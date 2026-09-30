@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inventory Counting App · Filippo Lamanna</title>
+<meta name="description" content="A low-code app that guided shop-floor workers through the weekly stock count, with data refreshed automatically from the data warehouse. Waste held under 1% of COGS, fewer stockouts, better reporting.">
+<meta property="og:title" content="Inventory Counting App · Filippo Lamanna">
+<meta property="og:description" content="Guided weekly stock counts that kept waste under 1% of COGS.">
+<meta property="og:image" content="https://filippolamanna.github.io/assets/img/og.png">
+<meta property="og:url" content="https://filippolamanna.github.io/work/inventory-counting-app/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/hud.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="frame-top">
+  <a class="wordmark" href="/">FILIPPO LAMANNA</a>
+  <button class="menu-btn mono" type="button" data-menu aria-expanded="false" aria-controls="nav">MENU</button>
+  <nav id="nav" class="nav mono" aria-label="Main">
+    <a href="/#work">CASES</a>
+    <a href="/#about">ABOUT</a>
+    <a href="/#contact">OPEN A CASE</a>
+    <button type="button" data-theme-toggle>DARK</button>
+  </nav>
+</header>
+<footer class="frame-bottom mono" aria-hidden="true">
+  <span class="status-left"><span class="dot"></span><span data-clock>MILAN --:--</span></span>
+  <span class="status-right">OPEN TO NEW ROLES</span>
+</footer>
+<main id="main" class="project">
+  <a class="back mono" href="/#work">← ALL CASES</a>
+  <header class="project-head">
+    <div class="project-top mono"><span class="case-no">#007</span><span class="tag">LOW-CODE APP</span><span class="stamp">SHIPPED</span></div>
+    <h1 class="display">Inventory Counting App</h1>
+    <p class="lede">A low-code app that guided shop-floor workers through the weekly stock count: what is on hand, how much, with which best-before date, and whether it can still be used.</p>
+    <dl class="meta mono">
+      <div><dt>ROLE</dt><dd>Design, build, roll out</dd></div>
+      <div><dt>YEAR</dt><dd>2024–2026</dd></div>
+      <div><dt>STACK</dt><dd>Google AppSheet · Google Sheets · data warehouse</dd></div>
+      <div><dt>STATUS</dt><dd>Shipped, used every week</dd></div>
+    </dl>
+  </header>
+
+  <div class="chapters">
+  <section class="chapter">
+    <h2 class="mono">01 · PROBLEM</h2>
+    <div class="body">
+      <p>At a global meal-kit company, every production week starts from one question: what stock do we actually have? Ingredients arrive in lots, each with its own best-before date, and what was left over from last week decides what can be used next.</p>
+      <p>Counting it by hand in spreadsheets was slow and hard to trust. Lots and best-before dates got lost, usable stock went to waste, and missing stock only showed up as a stockout in the middle of production.</p>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">02 · WHAT I BUILT</h2>
+    <div class="body">
+      <ul>
+        <li><strong>The data comes to the count.</strong> Every week a Google Sheet refreshes itself from the data warehouse: deliveries, last week's inventory, consumption, and every item's lot and best-before date.</li>
+        <li><strong>A guided count on the shop floor.</strong> The app walks workers item by item through what should be on the shelf, so counting becomes checking: confirm the quantity, the lot and the best-before date.</li>
+        <li><strong>Usable or not, at a glance.</strong> Each lot is checked against the coming production week, so stock that won't last is flagged before it becomes waste.</li>
+        <li><strong>Structured, auditable data.</strong> Counts land back in the sheet as clean records instead of free text, ready for reporting.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter wide">
+    <h2 class="mono">03 · HOW IT WORKS</h2>
+    <div class="body">
+      <figure class="diagram">
+        <svg viewBox="0 0 900 200" role="img" aria-labelledby="inv-dia" font-family="IBM Plex Mono, monospace" font-size="13">
+          <title id="inv-dia">Data warehouse feeds a weekly auto-refreshed sheet, which drives the app on the shop floor; counts flow back into the sheet and on to reporting.</title>
+          <defs><marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
+          <g fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="10" y="60" width="160" height="80"/><rect x="200" y="60" width="160" height="80"/>
+            <rect class="hl" x="390" y="60" width="160" height="80" stroke="none"/><rect x="580" y="60" width="160" height="80"/><rect x="770" y="60" width="120" height="80"/>
+            <path d="M170 100H196" marker-end="url(#a4)"/><path d="M360 100H386" marker-end="url(#a4)"/><path d="M550 100H576" marker-end="url(#a4)"/><path d="M740 100H766" marker-end="url(#a4)"/>
+          </g>
+          <g fill="currentColor">
+            <text x="24" y="92">DATA WAREHOUSE</text><text x="24" y="114" opacity=".6">deliveries · usage</text>
+            <text x="214" y="92">WEEKLY SHEET</text><text x="214" y="114" opacity=".6">auto-refreshed</text>
+            <text x="594" y="92">COUNTS</text><text x="594" y="114" opacity=".6">lot · best-before</text>
+            <text x="782" y="92">REPORTING</text><text x="782" y="114" opacity=".6">stock · waste</text>
+          </g>
+          <g fill="#0A0A0A"><text x="404" y="92">COUNTING APP</text><text x="404" y="114" opacity=".7">shop floor</text></g>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">04 · RESULTS</h2>
+    <div class="body">
+      <div class="stats">
+        <div class="stat"><b>&lt;1%</b><span>of COGS lost to waste, with every lot's usability checked before the next production week</span></div>
+        <div class="stat"><b>Weekly</b><span>data refresh from the data warehouse, with no manual preparation before a count</span></div>
+      </div>
+      <p>Waste held under 1% of COGS, fewer stockouts in the following production week because missing stock showed up at the count rather than on the line, and better reporting upwards, built on counts that could be trusted.</p>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">05 · WHAT I LEARNED</h2>
+    <div class="body">
+      <ul>
+        <li>Bring the data to the person doing the work. Showing what should be on the shelf turned counting into checking.</li>
+        <li>Low-code was the right tool: built and changed by operations, without waiting in an engineering queue.</li>
+        <li>A count is only as useful as its structure. Lots and best-before dates as fields, not notes, are what made waste and stockouts visible.</li>
+      </ul>
+    </div>
+  </section>
+  </div>
+
+  <nav class="next" aria-label="Next case"><a href="/work/hound/"><span class="next-meta mono">NEXT CASE · #001 · AI AGENT</span><span class="next-name">Hound <span class="next-arrow" aria-hidden="true">→</span></span><span class="next-desc">Chases stuck cases in live chat until a rep commits in writing</span></a></nav>
+</main>
+</body>
+</html>
