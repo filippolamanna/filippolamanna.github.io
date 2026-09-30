@@ -7,7 +7,8 @@
 :root {
   --bg: #F4F2EC; --paper: #FBFAF7; --ink: #141414; --muted: #66635C; --rule: rgba(20,20,20,.14); --panel: #ECE9E1;
   --signal: #FF4F00; --on-signal: #141414; --stamp: #C23A00;
-  --gutter: 48px; --frame-h: 64px; --status-h: 40px; --label-w: 200px;
+  --gutter: 48px; --frame-h: 64px; --status-h: 40px; --label-w: 200px; --max: 1600px;
+  --edge: max(var(--gutter), calc((100% - var(--max)) / 2));
   --f-display: "Barlow Condensed", "Arial Narrow", sans-serif;
   --f-body: "IBM Plex Sans", system-ui, sans-serif;
   --f-mono: "IBM Plex Mono", ui-monospace, monospace;
@@ -18,12 +19,6 @@
 }
 :root[data-theme="dark"] { --bg: #121110; --paper: #1B1A18; --ink: #EDEAE3; --muted: #9A968E; --rule: rgba(237,234,227,.14); --panel: #1E1C1A; --stamp: #FF6A2B; color-scheme: dark; }
 @media (max-width: 760px) { :root { --gutter: 16px; --frame-h: 56px; } }
-/* Big screens: scale the 1440 design up instead of stretching it, so line length stays comfortable. */
-@media (min-width: 1600px) { html { zoom: 1.12; } }
-@media (min-width: 1800px) { html { zoom: 1.25; } }
-@media (min-width: 2100px) { html { zoom: 1.4; } }
-@media (min-width: 2400px) { html { zoom: 1.6; } }
-@media (min-width: 3000px) { html { zoom: 1.9; } }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
@@ -47,7 +42,7 @@ section[id] { scroll-margin-top: var(--frame-h); }
 .btn:hover { background: var(--signal); color: var(--on-signal); }
 
 /* Frame */
-.frame-top, .frame-bottom { position: fixed; left: 0; right: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 var(--gutter); background: var(--bg); }
+.frame-top, .frame-bottom { position: fixed; left: 0; right: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 var(--edge); background: var(--bg); }
 .frame-top { top: 0; height: var(--frame-h); border-bottom: 1px solid var(--rule); }
 .frame-bottom { bottom: 0; height: var(--status-h); border-top: 1px solid var(--rule); }
 .frame-bottom .status-left { display: flex; align-items: center; gap: 14px; }
@@ -61,7 +56,7 @@ section[id] { scroll-margin-top: var(--frame-h); }
 .nav button { border: 1px solid var(--rule); padding: 4px 10px; }
 .menu-btn { display: none; background: none; border: 0; color: inherit; cursor: pointer; padding: 8px 0; }
 
-main { position: relative; padding: var(--frame-h) var(--gutter) var(--status-h); }
+main { position: relative; padding: var(--frame-h) var(--edge) var(--status-h); }
 
 /* Ledger rows */
 .row { display: grid; grid-template-columns: var(--label-w) minmax(0, 1fr); border-top: 1px solid var(--rule); padding: 64px 0; }
