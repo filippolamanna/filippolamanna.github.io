@@ -110,13 +110,10 @@ main { position: relative; padding: var(--frame-h) var(--gutter) var(--status-h)
 .about-body h2 { font-size: clamp(44px, 5vw, 72px); margin-bottom: 24px; }
 .about-body p { margin: 0 0 18px; font-size: 19px; }
 .about-body p.mono { font-size: 12.5px; margin-bottom: 24px; }
-.about-chat { list-style: none; margin: 0 0 28px; padding: 0; display: flex; flex-direction: column; gap: 12px; }
-.about-chat li { max-width: 86%; padding: 12px 16px; border-radius: 4px; font-size: 17px; line-height: 1.5; }
-.about-chat li b { display: block; font: 500 11px/1.4 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.about-chat li[data-who="you"] { align-self: flex-start; background: var(--paper); border: 1px solid var(--rule); }
-.about-chat li[data-who="me"] { align-self: flex-end; background: var(--ink); color: var(--bg); }
-.about-chat li[data-who="me"] b { color: inherit; opacity: .6; }
-.about-chat li[data-who="me"] + li[data-who="me"] b { display: none; }
+.profile { display: grid; grid-template-columns: 180px minmax(0, 1fr); margin: 0 0 28px; border-top: 1px solid var(--ink); }
+.profile dt, .profile dd { margin: 0; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.profile dt { color: var(--muted); padding-top: 17px; }
+.profile dd { font-size: 18px; line-height: 1.5; }
 
 /* Ticket */
 .ticket { position: relative; max-width: 760px; background: var(--paper); border: 1px solid var(--rule); padding: 36px 32px 32px; box-shadow: 8px 8px 0 var(--panel); }
@@ -205,6 +202,9 @@ main { position: relative; padding: var(--frame-h) var(--gutter) var(--status-h)
   .case-main { grid-area: main; }
   .case-result { grid-area: result; margin-top: 8px; }
   .case .stamp { grid-area: stamp; margin-top: 6px; }
+  .profile { grid-template-columns: 1fr; }
+  .profile dt { border-bottom: 0; padding-bottom: 0; }
+  .profile dd { padding-top: 4px; }
   .ticket { padding: 28px 18px 22px; box-shadow: 4px 4px 0 var(--panel); }
   .meta { grid-template-columns: 1fr 1fr; gap: 14px 0; }
   .stats { grid-template-columns: 1fr; }
