@@ -110,12 +110,6 @@ main { position: relative; padding: var(--frame-h) var(--gutter) var(--status-h)
 .about-body h2 { font-size: clamp(44px, 5vw, 72px); margin-bottom: 24px; }
 .about-body p { margin: 0 0 18px; font-size: 19px; }
 .about-body p.mono { font-size: 12.5px; margin-bottom: 24px; }
-.about-chat { list-style: none; margin: 0 0 28px; padding: 0; display: flex; flex-direction: column; gap: 12px; }
-.about-chat li { max-width: 86%; padding: 12px 16px; border-radius: 4px; font-size: 17px; line-height: 1.5; }
-.about-chat li b { display: block; font: 500 11px/1.4 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.about-chat li[data-who="you"] { align-self: flex-start; background: var(--paper); border: 1px solid var(--rule); }
-.about-chat li[data-who="me"] { align-self: flex-end; background: var(--ink); color: var(--bg); }
-.about-chat li[data-who="me"] b { color: inherit; opacity: .6; }
 
 /* Ticket */
 .ticket { position: relative; max-width: 760px; background: var(--paper); border: 1px solid var(--rule); padding: 36px 32px 32px; box-shadow: 8px 8px 0 var(--panel); }
