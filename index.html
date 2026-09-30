@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filippo Lamanna · Operations &amp; AI Automation</title>
+<meta name="description" content="Filippo Lamanna builds AI agents and automation for operations teams. Case studies: Hound, Orb, Magpie, Cadence, Cirulla and a running-form tracker.">
+<meta property="og:title" content="Filippo Lamanna · Operations &amp; AI Automation">
+<meta property="og:description" content="AI agents and automation for operations teams, with the results they delivered.">
+<meta property="og:image" content="https://filippolamanna.github.io/assets/img/og.png">
+<meta property="og:url" content="https://filippolamanna.github.io/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css">
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/hud.js" defer></script>
+<script src="/assets/js/chat.js" defer></script>
+<script src="/assets/js/contact.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="frame-top">
+  <a class="wordmark" href="/">FILIPPO LAMANNA</a>
+  <button class="menu-btn mono" type="button" data-menu aria-expanded="false" aria-controls="nav">MENU</button>
+  <nav id="nav" class="nav mono" aria-label="Main">
+    <a href="/#work">CASES</a>
+    <a href="/#about">ABOUT</a>
+    <a href="/#contact">OPEN A CASE</a>
+    <button type="button" data-theme-toggle>DARK</button>
+  </nav>
+</header>
+<footer class="frame-bottom mono" aria-hidden="true">
+  <span class="status-left"><span class="dot"></span><span data-clock>MILAN --:--</span><span data-status-line>6 CASES · 1 IN PROGRESS</span></span>
+  <span class="status-right">OPEN TO NEW ROLES</span>
+</footer>
+<main id="main">
+  <section class="hero">
+    <div class="hero-meta mono"><span>CASE #000</span><span>OPERATOR · FILIPPO LAMANNA</span><span>OPERATIONS &amp; AI AUTOMATION</span><span class="stamp">ACTIVE</span></div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1 class="display hero-title">I turn queues<br>into agents.</h1>
+        <p class="hero-lede">I work in operations at a travel-tech startup in Milan, and I build the things that run it: agents, bots and tools, plus the odd app of my own.</p>
+        <p class="mono muted">OPERATIONS · FOUNDER'S ASSOCIATE · AI AUTOMATION · PRODUCT</p>
+      </div>
+      <figure class="chat" aria-label="Demo: an AI agent chasing a stuck refund in a vendor's support chat">
+        <figcaption class="chat-head mono"><span>HOUND · DEMO CASE</span><span>NORTHWIND SUPPORT</span></figcaption>
+        <ol class="chat-log" data-chat>
+          <li data-kind="label" data-wait="400"><span class="msg-text">CONNECTED · QUEUE 3</span></li>
+          <li data-kind="them" data-wait="1400"><b>Northwind</b><span class="msg-text">Hi, you're chatting with Dana. How can I help?</span></li>
+          <li data-kind="label" data-wait="600"><span class="msg-text">HOLD 30s</span></li>
+          <li data-kind="us" data-wait="900"><b>Agent</b><span class="msg-text">Hi Dana. Order #A-10492 was cancelled on your side five weeks ago and the refund still shows as pending. Could you check where it is?</span></li>
+          <li data-kind="label" data-wait="300"><span class="msg-text">GROUNDED ✓ · SENT ✓ ECHO</span></li>
+          <li data-kind="them" data-wait="1800"><b>Northwind</b><span class="msg-text">I see it. For this order the refund has to be requested by email, I'm afraid.</span></li>
+          <li data-kind="label" data-wait="500"><span class="msg-text">PUSH BACK · 1 OF 2</span></li>
+          <li data-kind="us" class="blocked" data-wait="900"><b>Agent · draft</b><span class="msg-text">You already promised me this refund last week.</span></li>
+          <li data-kind="label" class="warn" data-wait="400"><span class="msg-text">BLOCKED · CLAIM NOT IN BRIEF OR CHAT</span></li>
+          <li data-kind="us" data-wait="900"><b>Agent</b><span class="msg-text">The cancellation came from your side, so the refund is already owed. Could you raise it from here so it doesn't wait another cycle?</span></li>
+          <li data-kind="label" data-wait="300"><span class="msg-text">GROUNDED ✓ · SENT ✓ ECHO</span></li>
+          <li data-kind="them" data-wait="2000"><b>Northwind</b><span class="msg-text">Fair point. I've escalated it to our refunds team, reference NW-58213. You'll see it within 10 working days.</span></li>
+          <li data-kind="us" data-wait="900"><b>Agent</b><span class="msg-text">Thanks Dana. So that's reference NW-58213, refund within 10 working days. Have a good day.</span></li>
+          <li data-kind="label" class="done" data-wait="500"><span class="msg-text">RESOLVED · REF NW-58213</span></li>
+        </ol>
+      </figure>
+    </div>
+  </section>
+
+  <section class="row" id="work">
+    <p class="row-label mono">01 / CASES</p>
+    <div class="row-body">
+      <div class="cases-head mono" aria-hidden="true"><span>NO.</span><span></span><span>CASE</span><span>RESULT</span><span>STATUS</span></div>
+      <ul class="cases">
+        <li><a class="case" href="/work/hound/">
+          <span class="case-no mono">#001</span>
+          <img class="case-thumb" src="/assets/img/card-hound.svg" alt="" width="600" height="600" loading="lazy">
+          <span class="case-main"><span class="case-name">Hound</span><span class="case-kind mono">AI agent · live support chats</span></span>
+          <span class="case-result">Chases stuck cases in live chat until a rep commits in writing</span>
+          <span class="stamp">IN PRODUCTION</span>
+        </a></li>
+        <li><a class="case" href="/work/magpie/">
+          <span class="case-no mono">#002</span>
+          <img class="case-thumb" src="/assets/img/card-magpie.svg" alt="" width="600" height="600" loading="lazy">
+          <span class="case-main"><span class="case-name">Magpie</span><span class="case-kind mono">Chrome extension · time saver for support agents</span></span>
+          <span class="case-result">Fills vendor forms in one click, so agents stop retyping bookings</span>
+          <span class="stamp">IN USE</span>
+        </a></li>
+        <li><a class="case" href="/work/orb/">
+          <span class="case-no mono">#003</span>
+          <img class="case-thumb" src="/assets/img/card-orb.svg" alt="" width="600" height="600" loading="lazy">
+          <span class="case-main"><span class="case-name">Orb</span><span class="case-kind mono">Slack bot · ops support for support agents</span></span>
+          <span class="case-result">Answers agents' routine checks in the thread, so they stay on the case</span>
+          <span class="stamp">LIVE</span>
+        </a></li>
+        <li><a class="case" href="/work/cadence/">
+          <span class="case-no mono">#004</span>
+          <img class="case-thumb" src="/assets/img/card-cadence.png" alt="" width="352" height="352" loading="lazy">
+          <span class="case-main"><span class="case-name">Cadence</span><span class="case-kind mono">iOS · watchOS · personal</span></span>
+          <span class="case-result">Running music that reacts to your body</span>
+          <span class="stamp">UNDER WRAPS</span>
+        </a></li>
+        <li><a class="case" href="/work/cirulla/">
+          <span class="case-no mono">#005</span>
+          <img class="case-thumb" src="/assets/img/card-cirulla.svg" alt="" width="600" height="600" loading="lazy">
+          <span class="case-main"><span class="case-name">Cirulla</span><span class="case-kind mono">iOS · Ligurian card game</span></span>
+          <span class="case-result">The Ligurian card game, with the rules as they're really played</span>
+          <span class="stamp">PERSONAL</span>
+        </a></li>
+        <li><a class="case" href="/work/run-form-tracker/">
+          <span class="case-no mono">#006</span>
+          <img class="case-thumb" src="/assets/img/card-run-form-tracker.svg" alt="" width="600" height="600" loading="lazy">
+          <span class="case-main"><span class="case-name">Run Form Tracker</span><span class="case-kind mono">Hardware · ESP32 + Python</span></span>
+          <span class="case-result">Two leg pods measure left/right running symmetry</span>
+          <span class="stamp">IN PROGRESS</span>
+        </a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="row" id="about">
+    <p class="row-label mono">02 / ABOUT</p>
+    <div class="about-body">
+      <h2 class="display">The operator</h2>
+      <p>Most of what's on this site started as a queue that grew faster than the team. My default move is to find the part of the job that follows rules, write those rules down as code, and leave people the part that needs judgement.</p>
+      <p>I started out in procurement, where my first automations were spreadsheets that refused to stay manual. These days they're agents.</p>
+      <p>Off the clock I run (hence two of the cases above), ski, lift, and sing in musical theatre around Milan.</p>
+      <p class="mono muted">OPEN TO · OPERATIONS · FOUNDER'S ASSOCIATE · AI AUTOMATION · PRODUCT</p>
+    </div>
+  </section>
+
+  <section class="row" id="contact">
+    <p class="row-label mono">03 / OPEN A CASE</p>
+    <div class="ticket">
+      <div class="ticket-head mono"><span>CASE #0007</span><span>STATUS · NEW</span><span>PRIORITY · YOURS</span></div>
+      <h2 class="display ticket-title">Open a case.</h2>
+      <p class="ticket-intro muted">A role, a project, or a question about any of the above.</p>
+      <form class="contact" data-contact action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="461341f9-2517-4325-97e6-c5dd0e72d9ed">
+        <input type="hidden" name="subject" value="New case from filippolamanna.github.io">
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label>Name<input name="name" required autocomplete="name"></label>
+        <label>Email<input name="email" type="email" required autocomplete="email"></label>
+        <label>What's the case?<textarea name="message" rows="5" required></textarea></label>
+        <button type="submit" class="btn">OPEN CASE →</button>
+        <p class="status mono" data-status role="status" aria-live="polite"></p>
+        <span class="stamp" data-stamp hidden>RECEIVED</span>
+      </form>
+      <p class="elsewhere mono">
+        <a href="https://www.linkedin.com/in/filolamanna" rel="me noopener" target="_blank">LINKEDIN ↗</a>
+        <a href="https://github.com/flamanna" rel="me noopener" target="_blank">GITHUB ↗</a>
+      </p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

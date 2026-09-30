@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orb · Filippo Lamanna</title>
+<meta name="description" content="Orb is an operational Slack bot for support agents: routine checks answered in the thread and cases handed to an AI agent without waiting, so agents spend their time on the case.">
+<meta property="og:title" content="Orb · Filippo Lamanna">
+<meta property="og:description" content="An operational Slack bot that saves support agents time on every case.">
+<meta property="og:image" content="https://filippolamanna.github.io/assets/img/og.png">
+<meta property="og:url" content="https://filippolamanna.github.io/work/orb/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/hud.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="frame-top">
+  <a class="wordmark" href="/">FILIPPO LAMANNA</a>
+  <button class="menu-btn mono" type="button" data-menu aria-expanded="false" aria-controls="nav">MENU</button>
+  <nav id="nav" class="nav mono" aria-label="Main">
+    <a href="/#work">CASES</a>
+    <a href="/#about">ABOUT</a>
+    <a href="/#contact">OPEN A CASE</a>
+    <button type="button" data-theme-toggle>DARK</button>
+  </nav>
+</header>
+<footer class="frame-bottom mono" aria-hidden="true">
+  <span class="status-left"><span class="dot"></span><span data-clock>MILAN --:--</span><span data-status-line>6 CASES · 1 IN PROGRESS</span></span>
+  <span class="status-right">OPEN TO NEW ROLES</span>
+</footer>
+<main id="main" class="project">
+  <a class="back mono" href="/#work">← ALL CASES</a>
+  <header class="project-head">
+    <div class="project-top mono"><span class="case-no">#003</span><span class="tag">SLACK BOT</span><span class="stamp">LIVE</span></div>
+    <h1 class="display">Orb</h1>
+    <p class="lede">An operational Slack bot that gives support agents answers where they already work, so routine checks stop eating their time.</p>
+    <dl class="meta mono">
+      <div><dt>ROLE</dt><dd>Design, build, operate</dd></div>
+      <div><dt>YEAR</dt><dd>2026</dd></div>
+      <div><dt>STACK</dt><dd>Python · Slack API · Claude</dd></div>
+      <div><dt>STATUS</dt><dd>Live</dd></div>
+    </dl>
+  </header>
+
+  <section class="chapter">
+    <h2 class="mono">01 · PROBLEM</h2>
+    <div class="body">
+      <p>Support agents lose time to the same small detours on case after case. Checking whether a customer's flight is still operating meant leaving the Slack thread, opening two systems and copying the result back. Handing a stuck case to the chat agent meant waiting for the one person who could run it.</p>
+      <p>None of it is hard. It just adds up, and every detour pulls an agent off the case in front of them.</p>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">02 · WHAT I BUILT</h2>
+    <div class="body">
+      <ul>
+        <li><strong>Lookups in the thread.</strong> <code>@Orb flight status</code> reads the case's flights, checks each one's live status and answers in the same thread. Read-only and open to every agent, so nobody switches tools for a routine check.</li>
+        <li><strong>Hand-offs without the wait.</strong> <code>@Orb hound</code> drafts the brief for the chat agent, reviews it automatically and posts it for approval, so a stuck case moves on without queueing for one person. Nothing goes live until an authorised person presses Send.</li>
+        <li><strong>Out of the way.</strong> One Slack message per case updates in place through drafting, review, live and ended, with Pause, Resume and Stop, so the thread stays readable for the agent working it.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">03 · ARCHITECTURE</h2>
+    <div class="body">
+      <figure class="diagram">
+        <svg viewBox="0 0 900 300" role="img" aria-labelledby="orb-dia" font-family="JetBrains Mono, monospace" font-size="13">
+          <title id="orb-dia">A Slack thread reaches Orb, which routes to a read-only status lookup or to a draft, review and human approval path before the agent goes live.</title>
+          <defs><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
+          <g fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="10" y="110" width="170" height="80"/><rect x="220" y="110" width="170" height="80"/>
+            <rect x="430" y="20" width="200" height="70"/>
+            <rect x="430" y="210" width="130" height="70"/><rect class="hl" x="590" y="210" width="130" height="70" stroke="none"/><rect x="750" y="210" width="140" height="70"/>
+            <path d="M180 150H216" marker-end="url(#a3)"/>
+            <path d="M390 135L426 70" marker-end="url(#a3)"/><path d="M390 165L426 230" marker-end="url(#a3)"/>
+            <path d="M560 245H586" marker-end="url(#a3)"/><path d="M720 245H746" marker-end="url(#a3)"/>
+          </g>
+          <g fill="currentColor">
+            <text x="24" y="142">SLACK THREAD</text><text x="24" y="164" opacity=".6">@Orb …</text>
+            <text x="234" y="142">ORB</text><text x="234" y="164" opacity=".6">allowlist · router</text>
+            <text x="444" y="50">STATUS LOOKUP</text><text x="444" y="72" opacity=".6">read-only · time-boxed</text>
+            <text x="444" y="240">DRAFT</text><text x="444" y="262" opacity=".6">+ auto review</text>
+            <text x="764" y="240">AGENT LIVE</text><text x="764" y="262" opacity=".6">pause · stop</text>
+          </g>
+          <g fill="#0A0A0A"><text x="604" y="240">APPROVE</text><text x="604" y="262" opacity=".7">a person</text></g>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">04 · RESULTS</h2>
+    <div class="body">
+      <div class="stats">
+        <div class="stat"><b>3+ min</b><span>of manual steps and data entry per request, replaced by one message in the thread</span></div>
+        <div class="stat"><b>0</b><span>tools to switch and fields to type: the answer lands in the thread the agent is already in</span></div>
+      </div>
+      <p>Live for the support team since September 2026. Without Orb, every one of these requests meant at least three minutes of lookups and data entry, and an interruption that pulled the agent off the case in front of them. Handing a case to the chat agent no longer waits on one person either.</p>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">05 · WHAT I LEARNED</h2>
+    <div class="body">
+      <ul>
+        <li>A tool for agents wins on time saved per case, not on features: the lookup has to be quicker than doing it by hand, or nobody uses it.</li>
+        <li>Separate read doors from write doors. Anyone can ask Orb a question; only named people can make it act.</li>
+        <li>Never send blind. Even a brief that already exists goes through review and a human press before an agent speaks.</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="next mono" aria-label="Next case"><span>NEXT CASE</span><a href="/work/cadence/">Cadence →</a></nav>
+</main>
+</body>
+</html>

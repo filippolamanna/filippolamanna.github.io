@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cirulla · Filippo Lamanna</title>
+<meta name="description" content="Cirulla, the Ligurian card game, for iPhone: the regional rules as they are really played, three computer opponents, and 251 tests on the rules engine.">
+<meta property="og:title" content="Cirulla · Filippo Lamanna">
+<meta property="og:description" content="The Ligurian card game of fifteen, against the computer.">
+<meta property="og:image" content="https://filippolamanna.github.io/assets/img/og.png">
+<meta property="og:url" content="https://filippolamanna.github.io/work/cirulla/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/hud.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="frame-top">
+  <a class="wordmark" href="/">FILIPPO LAMANNA</a>
+  <button class="menu-btn mono" type="button" data-menu aria-expanded="false" aria-controls="nav">MENU</button>
+  <nav id="nav" class="nav mono" aria-label="Main">
+    <a href="/#work">CASES</a>
+    <a href="/#about">ABOUT</a>
+    <a href="/#contact">OPEN A CASE</a>
+    <button type="button" data-theme-toggle>DARK</button>
+  </nav>
+</header>
+<footer class="frame-bottom mono" aria-hidden="true">
+  <span class="status-left"><span class="dot"></span><span data-clock>MILAN --:--</span><span data-status-line>6 CASES · 1 IN PROGRESS</span></span>
+  <span class="status-right">OPEN TO NEW ROLES</span>
+</footer>
+<main id="main" class="project">
+  <a class="back mono" href="/#work">← ALL CASES</a>
+  <header class="project-head">
+    <div class="project-top mono"><span class="case-no">#005</span><span class="tag">iOS · CARD GAME</span><span class="stamp">PERSONAL</span></div>
+    <h1 class="display">Cirulla</h1>
+    <p class="lede">Cirulla, the Ligurian card game, against the computer at three levels, with the rules as they are actually played.</p>
+    <dl class="meta mono">
+      <div><dt>ROLE</dt><dd>Solo, idea to device</dd></div>
+      <div><dt>YEAR</dt><dd>2026</dd></div>
+      <div><dt>STACK</dt><dd>Swift · SwiftUI · Swift Package Manager · Swift Testing</dd></div>
+      <div><dt>STATUS</dt><dd>Personal use</dd></div>
+    </dl>
+  </header>
+
+  <section class="chapter">
+    <h2 class="mono">01 · WHAT IT DOES</h2>
+    <div class="body">
+      <p>Cirulla is a Ligurian card game in the Scopa family: you capture table cards that match your card or add up to 15. There are few good ways to play it on a phone, and card apps often get the regional rules wrong.</p>
+      <p>This iPhone app plays a full two-player match against the computer at three difficulty levels, following the rules as they are played in Liguria. It keeps the traditional secret declarations (buona and cirulla), shows a full score breakdown after each hand, and saves automatically so you can pick up later.</p>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">02 · HOW IT WORKS</h2>
+    <div class="body">
+      <ul>
+        <li>The game engine is a separate Swift package with no user interface. It encodes every rule: captures by equal value, by sum or by sum to 15, the Ace sweep, the wild seven of hearts (the matta), the dealer's opening bonus and all end-of-hand scoring including primiera.</li>
+        <li>Every match comes from a seed, so any game can be replayed exactly from its seed and list of moves. That made rule bugs reproducible.</li>
+        <li>Easy plays randomly but prefers captures. Medium looks one move ahead and weighs scopa chances, the seven of diamonds, diamonds, primiera and the risk of leaving a table the opponent can sweep.</li>
+        <li>Hard uses Monte Carlo search: it deals the unseen cards at random many times, plays each option to the end of the hand, and picks the move with the best average result. It only sees what a real player would see.</li>
+        <li>Declarations are never prompted: you triple-tap the table (right half for buona, left for cirulla), the way a real player speaks up. A wrong call gets a small shake and no penalty.</li>
+        <li>Match length (21, 31 or 51 points) was chosen from measured hand scores: a median hand scores 7 points, so 21 lets one big hand decide a match.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">03 · SCREENSHOTS</h2>
+    <div class="body">
+      <div class="shots">
+        <figure class="shot"><img src="/assets/img/cirulla/01-home.png" alt="Cirulla home screen on green felt with Continue and Easy, Medium, Hard buttons" width="600" height="1304" loading="lazy"><figcaption class="mono">Home</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">04 · RESULTS</h2>
+    <div class="body">
+      <div class="stats">
+        <div class="stat"><b>251</b><span>automated tests on the rules engine, because for a traditional game the rules are the product</span></div>
+        <div class="stat"><b>3</b><span>AI levels, each checked by thousands of self-played matches to be clearly stronger than the one below</span></div>
+        <div class="stat"><b>0</b><span>network calls and no personal data: everything runs on the phone</span></div>
+        <div class="stat"><b>94</b><span>commits, with about 4,500 lines of Swift in the app and packages</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">05 · HOW IT WAS BUILT</h2>
+    <div class="body">
+      <p>Built with AI-assisted development (Claude Code): one model wrote the plans and another carried them out, test-first. I made the product and rule decisions: which regional rules to follow, the French-suited Genoese deck, declarations as unprompted gestures, and the "Osteria" look of felt green, cream cards and brass.</p>
+      <p>Playing it on my phone, I caught a rules error the model had written into the spec: the capture obligation applies to the card you play, not your whole hand. The hard part was rule fidelity. Small misreadings change how the game feels, and only real play exposed them.</p>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">06 · WHAT I LEARNED</h2>
+    <div class="body">
+      <ul>
+        <li>Rules are the product. For a traditional game, being correct matters more than any feature.</li>
+        <li>Keeping the game logic in its own tested package made it possible to change the look and motion without breaking play.</li>
+        <li>Planning in detail first, then building in small tested steps, got to a finished-feeling app fast.</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="next mono" aria-label="Next case"><span>NEXT CASE</span><a href="/work/run-form-tracker/">Run Form Tracker →</a></nav>
+</main>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hound · Filippo Lamanna</title>
+<meta name="description" content="Hound is an LLM agent that holds live support chats with vendors and comes back with a written commitment. Two in three cases resolved, 120+ hours of chat handled and counting.">
+<meta property="og:title" content="Hound · Filippo Lamanna">
+<meta property="og:description" content="An LLM agent that holds live support chats to close stuck cases.">
+<meta property="og:image" content="https://filippolamanna.github.io/assets/img/og.png">
+<meta property="og:url" content="https://filippolamanna.github.io/work/hound/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/hud.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="frame-top">
+  <a class="wordmark" href="/">FILIPPO LAMANNA</a>
+  <button class="menu-btn mono" type="button" data-menu aria-expanded="false" aria-controls="nav">MENU</button>
+  <nav id="nav" class="nav mono" aria-label="Main">
+    <a href="/#work">CASES</a>
+    <a href="/#about">ABOUT</a>
+    <a href="/#contact">OPEN A CASE</a>
+    <button type="button" data-theme-toggle>DARK</button>
+  </nav>
+</header>
+<footer class="frame-bottom mono" aria-hidden="true">
+  <span class="status-left"><span class="dot"></span><span data-clock>MILAN --:--</span><span data-status-line>6 CASES · 1 IN PROGRESS</span></span>
+  <span class="status-right">OPEN TO NEW ROLES</span>
+</footer>
+<main id="main" class="project">
+  <a class="back mono" href="/#work">← ALL CASES</a>
+  <header class="project-head">
+    <div class="project-top mono"><span class="case-no">#001</span><span class="tag">AI AGENT</span><span class="stamp">IN PRODUCTION</span></div>
+    <h1 class="display">Hound</h1>
+    <p class="lede">An LLM agent that holds live support chats with vendors to close cases that have been stuck for weeks, and comes back with a written commitment.</p>
+    <dl class="meta mono">
+      <div><dt>ROLE</dt><dd>Design, build, operate</dd></div>
+      <div><dt>YEAR</dt><dd>2026</dd></div>
+      <div><dt>STACK</dt><dd>Python · Playwright · FastAPI · Claude</dd></div>
+      <div><dt>STATUS</dt><dd>In production</dd></div>
+    </dl>
+  </header>
+
+  <section class="chapter">
+    <h2 class="mono">01 · PROBLEM</h2>
+    <div class="body">
+      <p>Operations teams build up cases that only move when someone opens a vendor's support chat, waits in a queue, and argues for half an hour until a rep commits to something in writing. It is repetitive and slow, and nobody wants to do it. The cases are well documented. The bottleneck is the conversation.</p>
+      <p>The counterpart is a real person doing their job, and everything the agent sends is read by them. So the design is about control, not about generation.</p>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">02 · WHAT I BUILT</h2>
+    <div class="body">
+      <p>Hound opens the vendor's own chat widget, gets past the triage bot, talks to a human rep turn by turn, and comes back with a written commitment, a reference number, or a clear reason why not. An operator console queues cases, shows live chats, and lets a person pause and take over at any point.</p>
+      <h3>The design bet</h3>
+      <p>Every rule that can be decided without judgement lives in Python with tests, not in the prompt. A prompt can be argued out of a rule by a persuasive rep. A function cannot.</p>
+      <ul>
+        <li><strong>Gates decide whether and when to speak:</strong> a silence ladder, a hard cap, a minimum gap between replies so the agent never talks over a rep, and a keep-alive so long transfer queues don't time the session out.</li>
+        <li><strong>Output checks decide what may go out:</strong> formatting stripped, empty messages refused, a term blocklist enforced.</li>
+        <li><strong>A grounding check</strong> reads every proposed message against the case brief and what the rep has said, and blocks claims neither supports. The agent's own earlier messages are left out on purpose, or a claim invented on turn three would certify itself on turn five.</li>
+        <li><strong>Negotiation policy in code:</strong> positions a rep can move off get one push-back before the chat may end; hard boundaries end it at once.</li>
+        <li><strong>Race safety:</strong> the transcript is re-read right before posting, and a send is dropped if the rep spoke in the meantime.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">03 · ARCHITECTURE</h2>
+    <div class="body">
+      <figure class="diagram">
+        <svg viewBox="0 0 900 430" role="img" aria-labelledby="hound-dia" font-family="JetBrains Mono, monospace" font-size="13">
+          <title id="hound-dia">Case brief and console feed a browser driver, a bridge and a turn runner; gates and a grounding check sit between the model and the chat.</title>
+          <defs><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
+          <g fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="20" y="30" width="240" height="64"/><rect x="330" y="30" width="240" height="64"/>
+            <rect x="20" y="180" width="240" height="72"/><rect x="330" y="180" width="240" height="72"/><rect x="640" y="180" width="240" height="72"/>
+            <rect class="hl" x="330" y="330" width="240" height="64" stroke="none"/><rect class="hl" x="640" y="330" width="240" height="64" stroke="none"/>
+            <path d="M140 94V176" marker-end="url(#a1)"/><path d="M450 94V176" marker-end="url(#a1)"/>
+            <path d="M260 206H326" marker-end="url(#a1)"/><path d="M326 226H264" marker-end="url(#a1)"/>
+            <path d="M570 206H636" marker-end="url(#a1)"/>
+            <path d="M760 252V326" marker-end="url(#a1)"/><path d="M640 362H574" marker-end="url(#a1)"/>
+            <path d="M450 330V256" marker-end="url(#a1)"/>
+          </g>
+          <g fill="currentColor">
+            <text x="36" y="58">CASE BRIEF</text><text x="36" y="78" opacity=".6">facts, ask, sources</text>
+            <text x="346" y="58">OPERATOR CONSOLE</text><text x="346" y="78" opacity=".6">queue · watch · pause · recap</text>
+            <text x="36" y="208">BROWSER DRIVER</text><text x="36" y="228" opacity=".6">Playwright, one per case</text>
+            <text x="346" y="208">BRIDGE</text><text x="346" y="228" opacity=".6">append-only ledger</text>
+            <text x="656" y="208">TURN RUNNER</text><text x="656" y="228" opacity=".6">1 stateless LLM call/turn</text>
+          </g>
+          <g fill="#0A0A0A">
+            <text x="346" y="358">GROUNDING CHECK</text><text x="346" y="378" opacity=".7">2nd model, blocks claims</text>
+            <text x="656" y="358">GATES</text><text x="656" y="378" opacity=".7">pure Python, tested</text>
+          </g>
+        </svg>
+        <figcaption class="mono">A message only counts as sent when the vendor's own server echoes it back.</figcaption>
+      </figure>
+      <p>One stateless model call per turn, with the case brief as the system prompt and the verbatim transcript as input. A crashed runner loses nothing, and every turn is a logged request and response. The model runs sandboxed with no tools, because its input contains text written by an outside party.</p>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">04 · RESULTS</h2>
+    <div class="body">
+      <div class="stats">
+        <div class="stat"><b>140+</b><span>cases worked since August 2026, over 230+ live chats with human reps across four vendor channels</span></div>
+        <div class="stat"><b>2 in 3</b><span>cases end with a written commitment, an agreed refund, or an escalation with a reference</span></div>
+        <div class="stat"><b>120+ h</b><span>of live chat handled by the agent instead of a person, and counting</span></div>
+        <div class="stat"><b>23 min</b><span>median chat; what is left for a person is queueing cases and reviewing a one-paragraph recap</span></div>
+      </div>
+      <p>The time figure counts conversation only. Finding the right support topic and waiting in queues are automated too, and not included. About 1,100 automated tests cover the agent and the console.</p>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">05 · WHAT I LEARNED</h2>
+    <div class="body">
+      <ul>
+        <li>Put the rules where they cannot be negotiated with.</li>
+        <li>Test fakes must return the real system's types and shapes, not tidy ones. Two UI bugs shipped because a fake answered a string where production answered a number.</li>
+        <li>Measure every change on a live case and write down what broke. Most of the design above is a record of specific failures.</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="next mono" aria-label="Next case"><span>NEXT CASE</span><a href="/work/magpie/">Magpie →</a></nav>
+</main>
+</body>
+</html>

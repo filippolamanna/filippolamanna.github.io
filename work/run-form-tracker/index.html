@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Run Form Tracker · Filippo Lamanna</title>
+<meta name="description" content="Two leg-mounted sensor pods and a Python analysis package that measure left and right running symmetry. Work in progress.">
+<meta property="og:title" content="Run Form Tracker · Filippo Lamanna">
+<meta property="og:description" content="Two leg pods that measure left and right running symmetry.">
+<meta property="og:image" content="https://filippolamanna.github.io/assets/img/og.png">
+<meta property="og:url" content="https://filippolamanna.github.io/work/run-form-tracker/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/hud.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="frame-top">
+  <a class="wordmark" href="/">FILIPPO LAMANNA</a>
+  <button class="menu-btn mono" type="button" data-menu aria-expanded="false" aria-controls="nav">MENU</button>
+  <nav id="nav" class="nav mono" aria-label="Main">
+    <a href="/#work">CASES</a>
+    <a href="/#about">ABOUT</a>
+    <a href="/#contact">OPEN A CASE</a>
+    <button type="button" data-theme-toggle>DARK</button>
+  </nav>
+</header>
+<footer class="frame-bottom mono" aria-hidden="true">
+  <span class="status-left"><span class="dot"></span><span data-clock>MILAN --:--</span><span data-status-line>6 CASES · 1 IN PROGRESS</span></span>
+  <span class="status-right">OPEN TO NEW ROLES</span>
+</footer>
+<main id="main" class="project">
+  <a class="back mono" href="/#work">← ALL CASES</a>
+  <header class="project-head">
+    <div class="project-top mono"><span class="case-no">#006</span><span class="tag">HARDWARE · PERSONAL</span><span class="stamp">IN PROGRESS</span></div>
+    <h1 class="display">Run Form Tracker</h1>
+    <p class="lede">Two small sensor pods, one above each ankle, that measure how evenly your left and right legs share the work.</p>
+    <dl class="meta mono">
+      <div><dt>ROLE</dt><dd>Solo, hardware and software</dd></div>
+      <div><dt>YEAR</dt><dd>2026</dd></div>
+      <div><dt>STACK</dt><dd>C++ · ESP32-C3 · Python · NumPy · pandas</dd></div>
+      <div><dt>STATUS</dt><dd>Software done, hardware next</dd></div>
+    </dl>
+  </header>
+
+  <section class="chapter">
+    <h2 class="mono">01 · WHAT IT DOES</h2>
+    <div class="body">
+      <p>Running watches tell you pace and step rate, but not whether your left and right legs do the same work. That imbalance can point to injury risk or bad form.</p>
+      <p>Each pod records leg motion during a run. Afterwards a Python program lines up the two recordings and reports, for each leg, how long the foot stays on the ground, stride timing, impact and how symmetrical the two sides are. The software is finished; the hardware is waiting to be assembled and tested.</p>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">02 · HOW IT WORKS</h2>
+    <div class="body">
+      <ul>
+        <li>Each pod is an ESP32-C3 microcontroller with a 6-axis motion sensor and a microSD card, on a small battery.</li>
+        <li>The sensor records 208 times a second into its own buffer, and the chip copies it to the card in batches, so slow card writes never lose samples.</li>
+        <li>The pods have no radio link. Three two-footed jumps at the start and end of a run leave matching impact spikes in both recordings, which the software uses to align them and correct for clock drift.</li>
+        <li>Strides are found from the rotation of the lower leg: the peak in mid-swing, then the moments the foot lands and leaves the ground. No machine learning.</li>
+        <li>For each leg it computes ground contact, swing, flight and stride time, impact peak and stride-time variability, then a symmetry index comparing the two sides.</li>
+        <li>Different LED blink patterns flag a sensor or card failure, so a pod never looks like it is recording when it isn't.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">03 · OUTPUT</h2>
+    <div class="body">
+      <div class="shots shots-wide">
+        <figure class="shot"><img src="/assets/img/run-form-tracker/01-synthetic.png" alt="Left and right gyroscope traces with detected foot strikes and toe-offs" width="1400" height="722" loading="lazy"><figcaption class="mono">Synthetic test data · gyroscope traces with detected landings (IC) and toe-offs (TO)</figcaption></figure>
+        <figure class="shot"><img src="/assets/img/run-form-tracker/02-synthetic.png" alt="Ground contact time per stride for the left and right leg" width="1400" height="459" loading="lazy"><figcaption class="mono">Synthetic test data · ground contact time per stride, left against right</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">04 · SO FAR</h2>
+    <div class="body">
+      <div class="stats">
+        <div class="stat"><b>208 Hz</b><span>per leg, about 12 MB an hour on each card</span></div>
+        <div class="stat"><b>0</b><span>radios: pods are synced in software from a jump ritual</span></div>
+        <div class="stat"><b>32</b><span>automated tests across firmware logic and analysis, all passing</span></div>
+        <div class="stat"><b>2 days</b><span>to write the firmware and the analysis package from a written spec</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">05 · HOW IT WAS BUILT</h2>
+    <div class="body">
+      <p>Built with AI-assisted development (Claude Code). I chose the goal (left and right asymmetry, cadence and ground contact time), the hardware, and the no-radio design with the jump ritual for syncing. The model wrote the firmware, the Python analysis package and its tests from a written spec and plan.</p>
+      <p>The hard part is still ahead: so far it has only run on synthetic data. The real test is assembling the pods and checking the results against a walk with a known number of steps.</p>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">06 · WHAT I LEARNED</h2>
+    <div class="body">
+      <ul>
+        <li>Decide how the data is stored first. Raw, self-describing files keep options open, such as training models on them later.</li>
+        <li>Choosing the simplest hardware and fixing timing in software avoided a whole class of wireless sync problems.</li>
+        <li>Synthetic signals catch logic bugs, but only real hardware will show whether the thresholds are right.</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="next mono" aria-label="Next case"><span>NEXT CASE</span><a href="/work/hound/">Hound →</a></nav>
+</main>
+</body>
+</html>
