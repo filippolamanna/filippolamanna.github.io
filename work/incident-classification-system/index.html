@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Incident Classification System · Filippo Lamanna</title>
+<meta name="description" content="A Google Sheet that turned warehouse incident reporting into a guided, mostly automatic ticket: 90% of fields filled from warehouse data, titles written by rule, and one click to create the ticket through the API.">
+<meta property="og:title" content="Incident Classification System · Filippo Lamanna">
+<meta property="og:description" content="Incident tickets 90% auto-filled and sent with one click.">
+<meta property="og:image" content="https://filippolamanna.github.io/assets/img/og.png">
+<meta property="og:url" content="https://filippolamanna.github.io/work/incident-classification-system/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/hud.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="frame-top">
+  <a class="wordmark" href="/">FILIPPO LAMANNA</a>
+  <button class="menu-btn mono" type="button" data-menu aria-expanded="false" aria-controls="nav">MENU</button>
+  <nav id="nav" class="nav mono" aria-label="Main">
+    <a href="/#work">CASES</a>
+    <a href="/#about">ABOUT</a>
+    <a href="/#contact">OPEN A CASE</a>
+    <button type="button" data-theme-toggle>DARK</button>
+  </nav>
+</header>
+<footer class="frame-bottom mono" aria-hidden="true">
+  <span class="status-left"><span class="dot"></span><span data-clock>MILAN --:--</span></span>
+  <span class="status-right">OPEN TO NEW ROLES</span>
+</footer>
+<main id="main" class="project">
+  <a class="back mono" href="/#work">← ALL CASES</a>
+  <header class="project-head">
+    <div class="project-top mono"><span class="case-no">#008</span><span class="tag">SHEETS + API</span><span class="stamp">SHIPPED</span></div>
+    <h1 class="display">Incident Classification System</h1>
+    <p class="lede">A Google Sheet that turned warehouse incident reporting from a ten-field form into a guided, mostly automatic ticket: 90% of the fields filled for you, the title written by rule, and one click to send it.</p>
+    <dl class="meta mono">
+      <div><dt>ROLE</dt><dd>Idea, design, build</dd></div>
+      <div><dt>YEAR</dt><dd>2024–2026</dd></div>
+      <div><dt>STACK</dt><dd>SQL · Google Sheets · Apps Script · Freshservice API</dd></div>
+      <div><dt>STATUS</dt><dd>Shipped</dd></div>
+    </dl>
+  </header>
+
+  <div class="chapters">
+  <section class="chapter">
+    <h2 class="mono">01 · PROBLEM</h2>
+    <div class="body">
+      <p>During inbound and production, the warehouse team flagged every incident to us: a supplier that didn't arrive, SKUs missing from a delivery, quantities that didn't match the order, quality issues, or something missing to complete the boxes.</p>
+      <p>The chain was long and manual. The shop floor sent a WhatsApp message to the third-party warehouse's office, the office opened a ticket in Freshservice, and urgent ones went on to Slack, where we handled substitutions and supplier escalations. Each ticket meant more than ten fields plus a free-text explanation. Titles depended on who wrote them and how their day was going, and mistakes in the SKU, the quantity or the supplier turned emergencies into chaos.</p>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">02 · WHAT I BUILT</h2>
+    <div class="body">
+      <ul>
+        <li><strong>An API, not another form.</strong> I asked the global team for access to the Freshservice API, because the fix was to stop filling the form by hand, not to make the form nicer.</li>
+        <li><strong>The data is already there.</strong> A Google Sheet with the same fields as the ticket, loaded daily and automatically from the data warehouse through SQL queries I wrote: incoming deliveries, recipes and the rest.</li>
+        <li><strong>A guided pick.</strong> The office chooses the incident type, straight from Freshservice's own list, then the SKU, then the supplier, already filtered to the ones supplying that SKU in the expected deliveries. Everything else fills itself; they only describe the specific issue.</li>
+        <li><strong>Titles written by rule.</strong> The title, description and priority are generated from rules for each incident type and sub-type, so every ticket follows the same layout.</li>
+        <li><strong>One button.</strong> An Apps Script sends the ticket through the Freshservice API. Nobody needs to open the ticketing interface.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter wide">
+    <h2 class="mono">03 · HOW IT WORKS</h2>
+    <div class="body">
+      <figure class="diagram">
+        <svg viewBox="0 0 900 200" role="img" aria-labelledby="inc-dia" font-family="IBM Plex Mono, monospace" font-size="12">
+          <title id="inc-dia">SQL loads warehouse data into a sheet daily; the office picks type, SKU and supplier; rules write the title, description and priority; one button sends the ticket through the API.</title>
+          <defs><marker id="a5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
+          <g fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="2" y="60" width="132" height="80"/><rect x="155" y="60" width="132" height="80"/>
+            <rect class="hl" x="308" y="60" width="132" height="80" stroke="none"/>
+            <rect x="461" y="60" width="132" height="80"/><rect x="614" y="60" width="132" height="80"/><rect x="767" y="60" width="132" height="80"/>
+            <path d="M134 100H151" marker-end="url(#a5)"/><path d="M287 100H304" marker-end="url(#a5)"/><path d="M440 100H457" marker-end="url(#a5)"/><path d="M593 100H610" marker-end="url(#a5)"/><path d="M746 100H763" marker-end="url(#a5)"/>
+          </g>
+          <g fill="currentColor">
+            <text x="14" y="92">DATA</text><text x="14" y="108">WAREHOUSE</text><text x="14" y="126" opacity=".6">SQL · daily</text>
+            <text x="167" y="92">SHEET</text><text x="167" y="112" opacity=".6">deliveries</text><text x="167" y="128" opacity=".6">recipes</text>
+            <text x="473" y="92">RULES</text><text x="473" y="112" opacity=".6">title · text</text><text x="473" y="128" opacity=".6">priority</text>
+            <text x="626" y="92">ONE BUTTON</text><text x="626" y="126" opacity=".6">Apps Script</text>
+            <text x="779" y="92">TICKET</text><text x="779" y="126" opacity=".6">via the API</text>
+          </g>
+          <g fill="#0A0A0A"><text x="320" y="92">GUIDED PICK</text><text x="320" y="112" opacity=".7">type · SKU</text><text x="320" y="128" opacity=".7">supplier</text></g>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">04 · RESULTS</h2>
+    <div class="body">
+      <div class="stats">
+        <div class="stat"><b>90%</b><span>of ticket fields filled automatically from warehouse data</span></div>
+        <div class="stat"><b>1 click</b><span>to create the ticket through the API, with no ticketing interface to open</span></div>
+      </div>
+      <p>Every ticket now takes one click and follows the same layout, which brought order to emergencies and made the tickets usable for analysis. The critical information, SKU, quantity and supplier, is picked from filtered lists instead of typed, so the mistakes that used to derail an urgent incident mostly disappeared, and priority is set by rule rather than by feel.</p>
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2 class="mono">05 · WHAT I LEARNED</h2>
+    <div class="body">
+      <ul>
+        <li>Ask for the API. The biggest improvement came from a permission request, not a new tool.</li>
+        <li>Make the right answer the easy one. Filtered lists removed whole classes of error that training never fixed.</li>
+        <li>Consistent titles are data. Once every ticket reads the same way, you can count, sort and learn from them.</li>
+      </ul>
+    </div>
+  </section>
+  </div>
+
+  <nav class="next" aria-label="Next case"><a href="/work/hound/"><span class="next-meta mono">NEXT CASE · #001 · AI AGENT</span><span class="next-name">Hound <span class="next-arrow" aria-hidden="true">→</span></span><span class="next-desc">Chases stuck cases in live chat until a rep commits in writing</span></a></nav>
+</main>
+</body>
+</html>
