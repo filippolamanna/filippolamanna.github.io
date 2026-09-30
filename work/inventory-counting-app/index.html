@@ -39,8 +39,8 @@
     <h1 class="display">Inventory Counting App</h1>
     <p class="lede">A low-code app that replaced paper stock counts on the warehouse floor: expected stock by category and lot, quantities ready or discarded, and discrepancies caught live instead of after transcription.</p>
     <dl class="meta mono">
-      <div><dt>ROLE</dt><dd>Design, build, roll out</dd></div>
-      <div><dt>YEAR</dt><dd>2024–2026</dd></div>
+      <div><dt>ROLE</dt><dd>Design, build, iterate</dd></div>
+      <div><dt>YEAR</dt><dd>2025</dd></div>
       <div><dt>STACK</dt><dd>Google AppSheet · Google Sheets · data warehouse</dd></div>
       <div><dt>STATUS</dt><dd>Shipped, used every week</dd></div>
     </dl>
@@ -62,6 +62,7 @@
         <li><strong>Expected stock, up front.</strong> A navigation bar splits the count into categories, such as expiring stock, rolling stock for the coming week and each ingredient group. Every category lists the SKUs we expect to find, split by lot and so by best-before date.</li>
         <li><strong>Two numbers per lot.</strong> For each lot on the shelf, the worker enters the quantity ready for use and the quantity discarded.</li>
         <li><strong>Reality wins.</strong> An SKU that isn't there can be deleted. Anything untracked can be added with a helper that walks through SKU, supplier (filtered to the ones that actually supply it), lot and best-before date.</li>
+        <li><strong>Shaped by the people using it.</strong> Built in 2025, then improved release by release with feedback from its main users: the shop-floor team doing the counts, the third-party warehouse's office staff, production, and food safety and quality assurance (FSQA).</li>
         <li><strong>Live, then logged.</strong> Every entry feeds a Google Sheet as it happens, so discrepancies show up in real time. At the end of the day the app snapshots the inventory and appends every SKU to a master sheet: its final category and where it ended up, whether discarded, donated or rolled into next week.</li>
       </ul>
     </div>
