@@ -44,25 +44,28 @@
         <p class="hero-lede">I work in operations at a travel-tech startup in Milan, and I build the things that run it: agents, bots and tools, plus the odd app of my own.</p>
         <p class="mono muted">STARTUP · OPS · AI AUTOMATION · PRODUCT MANAGEMENT</p>
       </div>
-      <figure class="chat" aria-label="Demo: an AI agent chasing a stuck refund in a vendor's support chat">
-        <figcaption class="chat-head mono"><span>HOUND · DEMO CASE</span><span>NORTHWIND SUPPORT</span></figcaption>
+      <div class="chat-wrap">
+        <p class="chat-intro"><strong>Simulated demo:</strong> Hound, my AI agent, chasing a stuck refund with a vendor's support rep. Orange tags are the checks deciding what it's allowed to say.</p>
+        <figure class="chat" aria-label="Demo: an AI agent chasing a stuck refund in a vendor's support chat">
+        <figcaption class="chat-head mono"><span>SIMULATED CHAT</span><span>HOUND ↔ REP</span></figcaption>
         <ol class="chat-log" data-chat>
-          <li data-kind="label" data-wait="400"><span class="msg-text">CONNECTED · QUEUE 3</span></li>
-          <li data-kind="them" data-wait="1400"><b>Northwind</b><span class="msg-text">Hi, you're chatting with Dana. How can I help?</span></li>
-          <li data-kind="label" data-wait="600"><span class="msg-text">HOLD 30s</span></li>
-          <li data-kind="us" data-wait="900"><b>Agent</b><span class="msg-text">Hi Dana. Order #A-10492 was cancelled on your side five weeks ago and the refund still shows as pending. Could you check where it is?</span></li>
-          <li data-kind="label" data-wait="300"><span class="msg-text">GROUNDED ✓ · SENT ✓ ECHO</span></li>
-          <li data-kind="them" data-wait="1800"><b>Northwind</b><span class="msg-text">I see it. For this order the refund has to be requested by email, I'm afraid.</span></li>
-          <li data-kind="label" data-wait="500"><span class="msg-text">PUSH BACK · 1 OF 2</span></li>
-          <li data-kind="us" class="blocked" data-wait="900"><b>Agent · draft</b><span class="msg-text">You already promised me this refund last week.</span></li>
-          <li data-kind="label" class="warn" data-wait="400"><span class="msg-text">BLOCKED · CLAIM NOT IN BRIEF OR CHAT</span></li>
-          <li data-kind="us" data-wait="900"><b>Agent</b><span class="msg-text">The cancellation came from your side, so the refund is already owed. Could you raise it from here so it doesn't wait another cycle?</span></li>
-          <li data-kind="label" data-wait="300"><span class="msg-text">GROUNDED ✓ · SENT ✓ ECHO</span></li>
-          <li data-kind="them" data-wait="2000"><b>Northwind</b><span class="msg-text">Fair point. I've escalated it to our refunds team, reference NW-58213. You'll see it within 10 working days.</span></li>
-          <li data-kind="us" data-wait="900"><b>Agent</b><span class="msg-text">Thanks Dana. So that's reference NW-58213, refund within 10 working days. Have a good day.</span></li>
-          <li data-kind="label" class="done" data-wait="500"><span class="msg-text">RESOLVED · REF NW-58213</span></li>
+          <li data-kind="label" data-wait="400"><span class="msg-text">IN QUEUE · POSITION 3</span></li>
+          <li data-kind="them" data-wait="1400"><b>Support rep</b><span class="msg-text">Hi, you're chatting with Dana. How can I help?</span></li>
+          <li data-kind="label" data-wait="600"><span class="msg-text">PAUSING BEFORE REPLYING</span></li>
+          <li data-kind="us" data-wait="900"><b>Hound (AI)</b><span class="msg-text">Hi Dana. Order #A-10492 was cancelled on your side five weeks ago and the refund still shows as pending. Could you check where it is?</span></li>
+          <li data-kind="label" data-wait="300"><span class="msg-text">FACT-CHECKED ✓ · DELIVERED ✓</span></li>
+          <li data-kind="them" data-wait="1800"><b>Support rep</b><span class="msg-text">I see it. For this order the refund has to be requested by email, I'm afraid.</span></li>
+          <li data-kind="label" data-wait="500"><span class="msg-text">REFUSAL · PUSHING BACK ONCE</span></li>
+          <li data-kind="us" class="blocked" data-wait="900"><b>Hound (AI) · draft</b><span class="msg-text">You already promised me this refund last week.</span></li>
+          <li data-kind="label" class="warn" data-wait="400"><span class="msg-text">BLOCKED · UNSUPPORTED CLAIM</span></li>
+          <li data-kind="us" data-wait="900"><b>Hound (AI)</b><span class="msg-text">The cancellation came from your side, so the refund is already owed. Could you raise it from here so it doesn't wait another cycle?</span></li>
+          <li data-kind="label" data-wait="300"><span class="msg-text">FACT-CHECKED ✓ · DELIVERED ✓</span></li>
+          <li data-kind="them" data-wait="2000"><b>Support rep</b><span class="msg-text">Fair point. I've escalated it to our refunds team, reference 58213. You'll see it within 10 working days.</span></li>
+          <li data-kind="us" data-wait="900"><b>Hound (AI)</b><span class="msg-text">Thanks Dana. So that's reference 58213, refund within 10 working days. Have a good day.</span></li>
+          <li data-kind="label" class="done" data-wait="500"><span class="msg-text">RESOLVED · REFUND ESCALATED</span></li>
         </ol>
-      </figure>
+        </figure>
+      </div>
     </div>
   </section>
 
