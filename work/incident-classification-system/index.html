@@ -59,7 +59,7 @@
     <h2 class="mono">02 · WHAT I BUILT</h2>
     <div class="body">
       <ul>
-        <li><strong>An API, not another form.</strong> I asked the global team for access to the Freshservice API, because the fix was to stop filling the form by hand, not to make the form nicer.</li>
+        <li><strong>An API, not another form.</strong> My first version only wrote the title and description, and the office still had to copy them into Freshservice by hand. Listening to them made it clear I had added a step, so I asked the global team for access to the Freshservice API and removed the form altogether.</li>
         <li><strong>The data is already there.</strong> A Google Sheet with the same fields as the ticket, loaded daily and automatically from the data warehouse through SQL queries I wrote: incoming deliveries, recipes and the rest.</li>
         <li><strong>A guided pick.</strong> The office chooses the incident type, straight from Freshservice's own list, then the SKU, then the supplier, already filtered to the ones supplying that SKU in the expected deliveries. Everything else fills itself; they only describe the specific issue.</li>
         <li><strong>Titles written by rule.</strong> The title, description and priority are generated from rules for each incident type and sub-type, so every ticket follows the same layout.</li>
@@ -109,7 +109,7 @@
     <h2 class="mono">05 · WHAT I LEARNED</h2>
     <div class="body">
       <ul>
-        <li>Ask for the API. The biggest improvement came from a permission request, not a new tool.</li>
+        <li>Listen to the people who use it, and don't create noise. My first version looked helpful but added a copy-and-paste step; the version that worked came from the office team telling me what their day actually looked like.</li>
         <li>Make the right answer the easy one. Filtered lists removed whole classes of error that training never fixed.</li>
         <li>Consistent titles are data. Once every ticket reads the same way, you can count, sort and learn from them.</li>
       </ul>
