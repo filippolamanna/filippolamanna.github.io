@@ -178,6 +178,8 @@ main { position: relative; padding: var(--frame-h) var(--gutter) var(--status-h)
 .shots-wide { grid-template-columns: 1fr; gap: 28px; }
 .shots-wide img { background: #fff; }
 .shot-narrow { max-width: 520px; }
+.shots-strip { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+.chapter.wide .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .next { padding: 6vh 0 8vh; }
 .next a { display: grid; gap: 10px; justify-items: start; padding: 28px min(20px, var(--gutter)); margin: 0 calc(-1 * min(20px, var(--gutter))); text-decoration: none; transition: background .2s ease; }
 .next a:hover { background: var(--panel); }
@@ -212,4 +214,6 @@ main { position: relative; padding: var(--frame-h) var(--gutter) var(--status-h)
   .meta { grid-template-columns: 1fr 1fr; gap: 14px 0; }
   .stats { grid-template-columns: 1fr; }
   .shots { grid-template-columns: 1fr 1fr; }
+  .shots-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .chapter.wide .stats { grid-template-columns: 1fr; }
 }
