@@ -37,7 +37,7 @@
   <header class="project-head">
     <div class="project-top mono"><span class="case-no">#001</span><span class="tag">AI AGENT</span><span class="stamp">IN PRODUCTION</span></div>
     <h1 class="display">Hound</h1>
-    <p class="lede">An LLM agent that holds live support chats with vendors to close cases that have been stuck for weeks, and comes back with a written commitment.</p>
+    <p class="lede">A human-supervised LLM agent that holds live support chats with vendors to close cases that have been stuck for weeks, and comes back with a written commitment.</p>
     <dl class="meta mono">
       <div><dt>ROLE</dt><dd>Design, build, operate</dd></div>
       <div><dt>YEAR</dt><dd>2026</dd></div>
@@ -66,6 +66,7 @@
         <li><strong>Output checks decide what may go out:</strong> formatting stripped, empty messages refused, a term blocklist enforced.</li>
         <li><strong>A grounding check</strong> reads every proposed message against the case brief and what the rep has said, and blocks claims neither supports. The agent's own earlier messages are left out on purpose, or a claim invented on turn three would certify itself on turn five.</li>
         <li><strong>Negotiation policy in code:</strong> positions a rep can move off get one push-back before the chat may end; hard boundaries end it at once.</li>
+        <li><strong>Human in the loop.</strong> A person chooses every case, can pause or take over any chat, and reviews the recap before anything is written back.</li>
         <li><strong>Race safety:</strong> the transcript is re-read right before posting, and a send is dropped if the rep spoke in the meantime.</li>
       </ul>
     </div>
