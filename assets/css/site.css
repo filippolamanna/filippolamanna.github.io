@@ -110,6 +110,12 @@ main { position: relative; padding: var(--frame-h) var(--gutter) var(--status-h)
 .about-body h2 { font-size: clamp(44px, 5vw, 72px); margin-bottom: 24px; }
 .about-body p { margin: 0 0 18px; font-size: 19px; }
 .about-body p.mono { font-size: 12.5px; margin-bottom: 24px; }
+.about-chat { list-style: none; margin: 0 0 28px; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.about-chat li { max-width: 86%; padding: 12px 16px; border-radius: 4px; font-size: 17px; line-height: 1.5; }
+.about-chat li b { display: block; font: 500 11px/1.4 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.about-chat li[data-who="you"] { align-self: flex-start; background: var(--paper); border: 1px solid var(--rule); }
+.about-chat li[data-who="me"] { align-self: flex-end; background: var(--ink); color: var(--bg); }
+.about-chat li[data-who="me"] b { color: inherit; opacity: .6; }
 
 /* Ticket */
 .ticket { position: relative; max-width: 760px; background: var(--paper); border: 1px solid var(--rule); padding: 36px 32px 32px; box-shadow: 8px 8px 0 var(--panel); }
@@ -146,9 +152,12 @@ main { position: relative; padding: var(--frame-h) var(--gutter) var(--status-h)
 .meta div { padding-right: 12px; }
 .meta dt { color: var(--muted); }
 .meta dd { margin: 0; text-transform: none; font-family: var(--f-body); font-size: 15px; letter-spacing: 0; }
-.chapter { display: grid; grid-template-columns: var(--label-w) minmax(0, 1fr); padding: 64px 0; border-bottom: 1px solid var(--rule); }
-.chapter > h2 { margin: 0; font-weight: 500; color: var(--muted); }
-.chapter .body { max-width: 760px; min-width: 0; }
+.chapters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 64px; }
+.chapter { padding: 56px 0; border-bottom: 1px solid var(--rule); min-width: 0; }
+.chapter.wide { grid-column: 1 / -1; }
+.chapter > h2 { margin: 0 0 18px; font-weight: 500; color: var(--muted); }
+.chapter .body { max-width: 720px; min-width: 0; }
+.chapter.wide .body { max-width: none; }
 .chapter .body p, .chapter .body li { font-size: 18px; }
 .chapter .body h3 { font: 700 30px/1 var(--f-display); text-transform: uppercase; margin: 32px 0 10px; }
 .chapter .body ul { padding-left: 1.1em; }
@@ -177,7 +186,9 @@ main { position: relative; padding: var(--frame-h) var(--gutter) var(--status-h)
   .nav { display: none; position: fixed; top: var(--frame-h); left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 18px; padding: 20px var(--gutter) 28px; background: var(--bg); border-bottom: 1px solid var(--rule); }
   :root[data-menu-open] .nav { display: flex; }
   .frame-bottom .status-right { display: none; }
-  .row, .chapter { grid-template-columns: 1fr; gap: 20px; padding: 44px 0; }
+  .row { grid-template-columns: 1fr; gap: 20px; padding: 44px 0; }
+  .chapters { grid-template-columns: 1fr; }
+  .chapter { padding: 40px 0; }
   .hero-grid { grid-template-columns: 1fr; gap: 32px; }
   .chat { height: 440px; }
   .cases-head { display: none; }
