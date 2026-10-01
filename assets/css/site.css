@@ -92,6 +92,14 @@ main { position: relative; padding: var(--frame-h) var(--edge) var(--status-h); 
 .chat-log li[data-kind="label"] { align-self: center; background: var(--signal); color: var(--on-signal); padding: 5px 8px; font: 500 11px/1 var(--f-mono); letter-spacing: .06em; }
 .chat-log li.warn { background: #141414; color: #FF6A2B; }
 .chat-log li.done { background: #141414; color: var(--signal); }
+.sheet-log { gap: 6px; }
+.sheet-log li.field { max-width: 100%; align-self: stretch; display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; align-items: baseline; padding: 8px 12px; border-radius: 0; background: var(--bg); color: var(--ink); border: 1px solid var(--rule); font-size: 14px; }
+.sheet-log li.field b { margin: 0; }
+.sheet-log li.pick .msg-text::after { content: " ▾"; color: var(--muted); }
+.sheet-log li.auto { background: color-mix(in srgb, var(--signal) 9%, var(--bg)); border-left: 3px solid var(--signal); }
+.sheet-log li.auto b { color: var(--muted); opacity: 1; }
+.sheet-log li.title .msg-text { font-family: var(--f-mono); font-size: 12.5px; }
+.sheet-log li.press { background: var(--ink); color: var(--bg); padding: 9px 16px; font-size: 12px; }
 
 /* Cases */
 .cases-head { display: grid; grid-template-columns: 64px 88px minmax(0, 1.3fr) minmax(0, 1fr) 150px; gap: 20px; color: var(--muted); padding: 0 20px 10px; }
