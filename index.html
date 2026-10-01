@@ -45,10 +45,11 @@
         <p class="mono muted">STARTUP · OPS · AI AUTOMATION · PRODUCT MANAGEMENT</p>
       </div>
       <div class="chat-wrap">
+        <div class="demos">
         <div class="demo" data-demo="hound-refund">
           <p class="chat-intro"><strong>Simulated demo:</strong> Hound, my supervised AI agent, chasing a stuck refund with a vendor's support rep. Orange tags are the checks deciding what it's allowed to say.</p>
           <figure class="chat">
-            <figcaption class="chat-head mono"><span>SIMULATED CHAT · HOUND</span><span>1 / 5</span></figcaption>
+            <figcaption class="chat-head mono"><span>SIMULATED CHAT · HOUND</span><span>REFUND</span></figcaption>
             <ol class="chat-log" data-chat>
           <li data-kind="label" data-wait="400"><span class="msg-text">IN QUEUE · POSITION 3</span></li>
           <li data-kind="them" data-wait="1400"><b>Support rep</b><span class="msg-text">Hi, you're chatting with Dana. How can I help?</span></li>
@@ -71,7 +72,7 @@
         <div class="demo" data-demo="hound-deflection" hidden>
           <p class="chat-intro"><strong>Simulated demo:</strong> Hound is told to email instead, pushes back once, politely, and the rep opens the request in the chat.</p>
           <figure class="chat">
-            <figcaption class="chat-head mono"><span>SIMULATED CHAT · HOUND</span><span>2 / 5</span></figcaption>
+            <figcaption class="chat-head mono"><span>SIMULATED CHAT · HOUND</span><span>DEFLECTION</span></figcaption>
             <ol class="chat-log" data-chat>
           <li data-kind="label" data-wait="400"><span class="msg-text">IN QUEUE · POSITION 2</span></li>
           <li data-kind="them" data-wait="1400"><b>Support rep</b><span class="msg-text">Hello, Marco here. How can I help?</span></li>
@@ -91,7 +92,7 @@
         <div class="demo" data-demo="hound-queue" hidden>
           <p class="chat-intro"><strong>Simulated demo:</strong> Hound waits out a long transfer queue, keeping the session alive until the next rep picks up.</p>
           <figure class="chat">
-            <figcaption class="chat-head mono"><span>SIMULATED CHAT · HOUND</span><span>3 / 5</span></figcaption>
+            <figcaption class="chat-head mono"><span>SIMULATED CHAT · HOUND</span><span>LONG QUEUE</span></figcaption>
             <ol class="chat-log" data-chat>
           <li data-kind="label" data-wait="400"><span class="msg-text">TRANSFERRED · QUEUE POSITION 4</span></li>
           <li data-kind="label" data-wait="1400"><span class="msg-text">WAITING · 3 MIN OF SILENCE</span></li>
@@ -110,7 +111,7 @@
         <div class="demo" data-demo="orb-slack" hidden>
           <p class="chat-intro"><strong>Simulated demo:</strong> Orb, a Slack bot, answers a support agent's lookup in the thread, then hands the case to Hound once a person presses Send.</p>
           <figure class="chat">
-            <figcaption class="chat-head mono"><span>SIMULATED · ORB IN SLACK</span><span>4 / 5</span></figcaption>
+            <figcaption class="chat-head mono"><span>SIMULATED · ORB IN SLACK</span><span>SLACK THREAD</span></figcaption>
             <ol class="chat-log" data-chat>
           <li data-kind="label" data-wait="400"><span class="msg-text">#SUPPORT · THREAD</span></li>
           <li data-kind="them" data-wait="1200"><b>Support agent</b><span class="msg-text">@Orb flight status</span></li>
@@ -127,7 +128,7 @@
         <div class="demo" data-demo="incident-ticket" hidden>
           <p class="chat-intro"><strong>Simulated demo:</strong> the Incident Classification System, a Google Sheet. The warehouse office picks three fields; the sheet fills the rest, writes the title and sends the ticket.</p>
           <figure class="chat">
-            <figcaption class="chat-head mono"><span>SIMULATED · INCIDENT SHEET</span><span>5 / 5</span></figcaption>
+            <figcaption class="chat-head mono"><span>SIMULATED · INCIDENT SHEET</span><span>GOOGLE SHEET</span></figcaption>
             <ol class="chat-log sheet-log" data-chat>
               <li data-kind="label" data-wait="400"><span class="msg-text">NEW INCIDENT</span></li>
               <li data-kind="them" data-type="pick" data-choice="2" class="field pick" data-wait="1100"><b>Incident type</b><span class="msg-text">Quantity discrepancy</span><span class="dd" hidden><span data-option>Supplier no-show</span><span data-option>Missing SKU</span><span data-option>Quantity discrepancy</span><span data-option>Quality issue</span></span></li>
@@ -145,7 +146,8 @@
             </ol>
           </figure>
         </div>
-        <nav class="demo-nav mono" data-demo-nav aria-label="Demos" hidden><button type="button" data-goto="0" aria-current="true">Refund</button> <button type="button" data-goto="1">Deflection</button> <button type="button" data-goto="2">Long queue</button> <button type="button" data-goto="3">Orb</button> <button type="button" data-goto="4">Incident</button></nav>
+        </div>
+        <nav class="demo-nav mono" data-demo-nav aria-label="Demos" hidden><button type="button" data-goto="hound" aria-current="true">Hound</button> <button type="button" data-goto="orb-slack">Orb</button> <button type="button" data-goto="incident-ticket">Incident</button></nav>
       </div>
     </div>
   </section>

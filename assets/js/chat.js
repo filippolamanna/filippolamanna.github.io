@@ -59,19 +59,31 @@
     return o + 1 < OTHER.length ? OTHER[o + 1] : nextHound();
   }
 
+  function indexOf(key) {
+    for (var i = 0; i < demos.length; i++) if (demos[i].dataset.demo === key) return i;
+    return 0;
+  }
+
   var current = 0;
   function show(i) {
     current = i;
     demos.forEach(function (d, j) { d.hidden = j !== i; });
-    buttons.forEach(function (b, j) {
-      if (j === i) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+    var key = demos[i].dataset.demo.indexOf('hound') === 0 ? 'hound' : demos[i].dataset.demo;
+    buttons.forEach(function (b) {
+      if (b.dataset.goto === key) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
     });
   }
   if (nav) nav.hidden = false;
 
   if (reduce) {
     // Finished conversations, switched by hand.
-    buttons.forEach(function (b, j) { b.addEventListener('click', function () { show(j); }); });
+    var staticHound = 0;
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (b.dataset.goto === 'hound') { show(HOUND[staticHound % HOUND.length]); staticHound++; }
+        else show(indexOf(b.dataset.goto));
+      });
+    });
     return;
   }
 
@@ -188,10 +200,9 @@
     }
   }
 
-  buttons.forEach(function (b, j) {
+  buttons.forEach(function (b) {
     b.addEventListener('click', function () {
-      if (HOUND.indexOf(j) !== -1) { houndQueue = houndQueue.filter(function (h) { return h !== j; }); remember(j); }
-      loop(j);
+      loop(b.dataset.goto === 'hound' ? nextHound() : indexOf(b.dataset.goto));
     });
   });
   loop(nextHound());
