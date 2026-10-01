@@ -177,7 +177,7 @@
     var d = logs[i], log = d.log;
     d.items.forEach(function (li, k) {
       li.hidden = true;
-      li.classList.remove('typing', 'pop', 'clicked', 'choosing');
+      li.classList.remove('typing', 'pop', 'clicked', 'choosing', 'updated');
       var dd = li.querySelector('.dd');
       if (dd) dd.hidden = true;
       var t = li.querySelector('.msg-text');
@@ -205,7 +205,9 @@
       }
       var el = li.querySelector('.msg-text');
       var picking = el && li.dataset.type === 'pick';
-      var typed = el && !picking && (li.dataset.type ? li.dataset.type === '1' : li.dataset.kind === 'us');
+      var states = li.dataset.states ? li.dataset.states.split('|') : null;
+      var typed = el && !picking && !states && (li.dataset.type ? li.dataset.type === '1' : li.dataset.kind === 'us');
+      if (states) el.textContent = states[0];
       if (typed) { el.textContent = ''; li.classList.add('typing'); }
       else if (picking) el.textContent = 'Select…';
       if (li.hasAttribute('data-fill')) el.textContent = '';
@@ -214,6 +216,15 @@
       log.scrollTop = log.scrollHeight;
       if (typed) { await type(el, d.texts[k], token, li.dataset.type === '1'); li.classList.remove('typing'); }
       if (picking) await pick(li, el, d.texts[k], token);
+      if (states) {
+        // One message, updated in place: no new lines appear.
+        for (var st = 1; st < states.length; st++) {
+          await scripted(1100);
+          if (token !== run) return false;
+          el.textContent = states[st];
+          li.classList.remove('updated'); void li.offsetWidth; li.classList.add('updated');
+        }
+      }
       if (li.dataset.kind === 'click') await press(li, token, d);
       log.scrollTop = log.scrollHeight;
     }

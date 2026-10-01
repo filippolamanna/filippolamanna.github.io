@@ -116,6 +116,10 @@ main { position: relative; padding: var(--frame-h) var(--edge) var(--status-h); 
 .slack-btn.pressed { background: transparent; color: var(--ink); border-color: var(--rule); }
 .click-row.clicked .slack-btn:not([data-target]) { opacity: .35; }
 .sheet-press { align-self: center; }
+.chat-log li.live b::after { content: " · LIVE"; color: var(--signal); }
+.chat-log li.updated { animation: updated .6s ease-out; }
+@keyframes updated { from { box-shadow: 0 0 0 3px var(--signal); } to { box-shadow: 0 0 0 0 transparent; } }
+@media (prefers-reduced-motion: reduce) { .chat-log li.updated { animation: none; } }
 .chat-head .tabs { display: flex; gap: 4px; }
 .chat-head .tab { padding: 1px 8px; border: 1px solid var(--rule); color: var(--muted); }
 .chat-head .tab.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }

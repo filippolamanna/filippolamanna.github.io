@@ -112,19 +112,26 @@
           </figure>
         </div>
         <div class="demo" data-demo="orb-slack" hidden>
-          <p class="chat-intro"><strong>Simulated demo:</strong> Orb, a Slack bot, answers a support agent's lookup in the thread, then hands the case to Hound once a person presses Send.</p>
+          <p class="chat-intro"><strong>Simulated demo:</strong> Orb, a Slack bot: a lookup in the thread, a hand-off to Hound with live status updated in place, and a booking change the vendor never announced.</p>
           <figure class="chat">
             <figcaption class="chat-head mono"><span>SIMULATED · ORB IN SLACK</span><span>SLACK THREAD</span></figcaption>
             <ol class="chat-log" data-chat>
           <li data-kind="label" data-wait="400"><span class="msg-text">#SUPPORT · THREAD</span></li>
-          <li data-kind="them" data-wait="1200"><b>Support agent</b><span class="msg-text">@Orb flight status</span></li>
-          <li data-kind="label" data-wait="500"><span class="msg-text">READ-ONLY LOOKUP</span></li>
-          <li data-kind="us" data-wait="700"><b>Orb</b><span class="msg-text">Two legs on case #A-10492. Leg 1: cancelled. Leg 2: on schedule ✓</span></li>
-          <li data-kind="them" data-wait="1600"><b>Support agent</b><span class="msg-text">The refund for leg 1 is still stuck. @Orb hound</span></li>
-          <li data-kind="label" data-wait="700"><span class="msg-text">DRAFTING BRIEF · REVIEWED ✓</span></li>
-          <li data-kind="us" data-wait="700"><b>Orb</b><span class="msg-text">Brief ready: chase the refund for leg 1. A person needs to press Send.</span></li>
+          <li data-kind="them" data-wait="1100"><b>Support agent</b><span class="msg-text">@Orb flight status</span></li>
+          <li data-kind="label" data-wait="400"><span class="msg-text">READ-ONLY LOOKUP</span></li>
+          <li data-kind="us" data-wait="600"><b>Orb</b><span class="msg-text">Two legs on case #A-10492. Leg 1: cancelled. Leg 2: on schedule ✓</span></li>
+          <li data-kind="them" data-wait="1300"><b>Support agent</b><span class="msg-text">The refund for leg 1 is still stuck. @Orb hound</span></li>
+          <li data-kind="label" data-wait="600"><span class="msg-text">DRAFTING BRIEF · REVIEWED ✓</span></li>
+          <li data-kind="us" data-wait="600"><b>Orb</b><span class="msg-text">Brief ready: chase the refund for leg 1. A person needs to press Send.</span></li>
           <li data-kind="click" class="click-row clicked" data-wait="500"><span class="slack-btn primary pressed" data-target data-before="Send" data-after="✓ Sent by team lead">✓ Sent by team lead</span><span class="slack-btn">Redraft</span><span class="slack-btn">Cancel</span></li>
-          <li data-kind="label" class="done" data-wait="500"><span class="msg-text">HOUND LIVE · CASE HANDED OFF</span></li>
+          <li data-kind="us" data-type="none" data-states="Hound · in queue, position 3|Hound · in queue, position 1|Hound · talking to a rep|Hound · resolved: refund escalated, ref 58213 ✓" class="live" data-wait="600"><b>Orb</b><span class="msg-text">Hound · resolved: refund escalated, ref 58213 ✓</span></li>
+          <li data-kind="label" data-wait="400"><span class="msg-text">UPDATED IN PLACE · NO NEW MESSAGES</span></li>
+          <li data-kind="them" data-wait="1200"><b>Support agent</b><span class="msg-text">@Orb watch</span></li>
+          <li data-kind="us" data-wait="600"><b>Orb</b><span class="msg-text">Watching #A-10492: I'll check the booking reference every 4 hours.</span></li>
+          <li data-kind="label" data-wait="900"><span class="msg-text">4 HOURS LATER</span></li>
+          <li data-kind="us" data-wait="700"><b>Orb</b><span class="msg-text">@Support agent the booking reference changed: K7Q2XM → K9R4TL, and the vendor didn't tell us. Update it?</span></li>
+          <li data-kind="click" class="click-row clicked" data-wait="500"><span class="slack-btn primary pressed" data-target data-before="Apply" data-after="✓ Applied">✓ Applied</span><span class="slack-btn">Ignore</span></li>
+          <li data-kind="label" class="done" data-wait="500"><span class="msg-text">SILENT CHANGE CAUGHT · ORDER UPDATED</span></li>
             </ol>
           </figure>
         </div>
