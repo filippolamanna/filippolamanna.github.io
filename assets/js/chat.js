@@ -31,8 +31,13 @@
   var random = window.__DEMO_RANDOM__ !== false;
   var hold = Number(window.__DEMO_HOLD__) || 4000;
   var KEY = 'lastHoundDemo';
-  var lastHound = -1;
-  if (random) { try { lastHound = Number(localStorage.getItem(KEY)); } catch (e) { /* storage blocked */ } }
+  var lastHound = -1, fresh = true;
+  if (random) {
+    try {
+      var stored = localStorage.getItem(KEY);
+      if (stored !== null) { lastHound = Number(stored); fresh = false; }
+    } catch (e) { /* storage blocked: treat as a fresh visit */ }
+  }
   var houndQueue = [];
   function shuffled(a) {
     a = a.slice();
@@ -41,6 +46,13 @@
     return a;
   }
   function nextHound() {
+    if (fresh) {
+      // A first visit always opens on the refund demo: the blocked claim is what sets Hound apart.
+      fresh = false;
+      houndQueue = shuffled(HOUND.slice(1));
+      remember(HOUND[0]);
+      return HOUND[0];
+    }
     if (!houndQueue.length) {
       houndQueue = shuffled(HOUND);
       if (houndQueue.length > 1 && houndQueue[0] === lastHound) houndQueue.push(houndQueue.shift());
@@ -182,7 +194,7 @@
       await whileOffscreen();
       if (token !== run) return false;
       var li = d.items[k];
-      await scripted(Number(li.dataset.wait) || 700);
+      await scripted(k === 0 ? 0 : (Number(li.dataset.wait) || 700));
       if (token !== run) return false;
       if (li.dataset.kind === 'tab') {
         // Switching tabs is a navigation: the previous page goes away.

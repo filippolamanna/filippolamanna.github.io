@@ -7,6 +7,7 @@
 :root {
   --bg: #F4F2EC; --paper: #FBFAF7; --ink: #141414; --muted: #66635C; --rule: rgba(20,20,20,.14); --panel: #ECE9E1;
   --signal: #FF4F00; --on-signal: #141414; --stamp: #C23A00;
+  --inv-bg: #141414; --inv-fg: #F4F2EC; --inv-accent: #FF4F00;
   --gutter: 48px; --frame-h: 64px; --status-h: 40px; --label-w: 200px; --max: 1600px;
   --edge: max(var(--gutter), calc((100% - var(--max)) / 2));
   --f-display: "Barlow Condensed", "Arial Narrow", sans-serif;
@@ -15,9 +16,9 @@
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --bg: #121110; --paper: #1B1A18; --ink: #EDEAE3; --muted: #9A968E; --rule: rgba(237,234,227,.14); --panel: #1E1C1A; --stamp: #FF6A2B; color-scheme: dark; }
+  :root:not([data-theme="light"]) { --inv-bg: #EDEAE3; --inv-fg: #141414; --inv-accent: #B23400; --bg: #121110; --paper: #1B1A18; --ink: #EDEAE3; --muted: #9A968E; --rule: rgba(237,234,227,.14); --panel: #1E1C1A; --stamp: #FF6A2B; color-scheme: dark; }
 }
-:root[data-theme="dark"] { --bg: #121110; --paper: #1B1A18; --ink: #EDEAE3; --muted: #9A968E; --rule: rgba(237,234,227,.14); --panel: #1E1C1A; --stamp: #FF6A2B; color-scheme: dark; }
+:root[data-theme="dark"] { --inv-bg: #EDEAE3; --inv-fg: #141414; --inv-accent: #B23400; --bg: #121110; --paper: #1B1A18; --ink: #EDEAE3; --muted: #9A968E; --rule: rgba(237,234,227,.14); --panel: #1E1C1A; --stamp: #FF6A2B; color-scheme: dark; }
 @media (max-width: 760px) { :root { --gutter: 16px; --frame-h: 56px; } }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -93,8 +94,8 @@ main { position: relative; padding: var(--frame-h) var(--edge) var(--status-h); 
 .chat-log li.blocked { background: transparent; color: var(--muted); border: 1px dashed var(--muted); }
 .chat-log li.blocked .msg-text { text-decoration: line-through; }
 .chat-log li[data-kind="label"] { align-self: center; background: var(--signal); color: var(--on-signal); padding: 5px 8px; font: 500 11px/1 var(--f-mono); letter-spacing: .06em; }
-.chat-log li.warn { background: #141414; color: #FF6A2B; }
-.chat-log li.done { background: #141414; color: var(--signal); }
+.chat-log li.warn { background: var(--inv-bg); color: var(--inv-accent); }
+.chat-log li.done { background: var(--inv-bg); color: var(--inv-accent); }
 .sheet-log { gap: 6px; }
 .sheet-log li.field { max-width: 100%; align-self: stretch; display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; align-items: baseline; padding: 8px 12px; border-radius: 0; background: var(--bg); color: var(--ink); border: 1px solid var(--rule); font-size: 14px; }
 .sheet-log li.field b { margin: 0; }
@@ -118,7 +119,7 @@ main { position: relative; padding: var(--frame-h) var(--edge) var(--status-h); 
 .chat-head .tabs { display: flex; gap: 4px; }
 .chat-head .tab { padding: 1px 8px; border: 1px solid var(--rule); color: var(--muted); }
 .chat-head .tab.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.chat-log li.toast { align-self: flex-end; background: #141414; color: #F4F2EC; }
+.chat-log li.toast { align-self: flex-end; background: var(--inv-bg); color: var(--inv-fg); }
 .chip-row .slack-btn { font: 500 12.5px/1 var(--f-mono); letter-spacing: .02em; border-radius: 999px; padding: 8px 14px; }
 .chip-row .slack-btn.primary:not(.pressed) { background: var(--signal); color: var(--on-signal); border-color: var(--signal); }
 .sheet-log li[data-fill] .msg-text:empty::before { content: "—"; color: var(--muted); }

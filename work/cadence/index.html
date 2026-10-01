@@ -12,6 +12,8 @@
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
 <script src="/assets/js/theme.js"></script>
 <script src="/assets/js/hud.js" defer></script>
@@ -28,8 +30,8 @@
     <button type="button" data-theme-toggle>DARK</button>
   </nav>
 </header>
-<footer class="frame-bottom mono" aria-hidden="true">
-  <span class="status-left"><span class="dot"></span><span data-clock>MILAN --:--</span></span>
+<footer class="frame-bottom mono">
+  <span class="status-left" aria-hidden="true"><span class="dot"></span><span data-clock>MILAN --:--</span></span>
   <span class="status-right">OPEN TO NEW ROLES</span>
 </footer>
 <main id="main" class="project">
@@ -72,7 +74,7 @@
   <section class="chapter">
     <h2 class="mono">03 · HOW IT WAS BUILT</h2>
     <div class="body">
-      <p>Built with AI-assisted development (Claude Code) since June 2026. I set the product idea and the behaviour, and tested every build on real runs with my own iPhone and Apple Watch. After each run we looked at what happened and decided the next batch of changes. The model wrote the Swift.</p>
+      <p>Built with AI-assisted development (Claude Code) since June 2026. I set the product idea and the behaviour, and tested every build on real runs with my own iPhone and Apple Watch. After each run I went through what happened with the model and decided the next batch of changes. The model wrote the Swift.</p>
       <p>The hardest part wasn't the coaching, it was the platform: iOS killed the app three times for blocking the main thread while talking to the music player, which forced a rebuild of the whole playback layer.</p>
     </div>
   </section>
