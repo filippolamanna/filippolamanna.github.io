@@ -99,7 +99,18 @@ main { position: relative; padding: var(--frame-h) var(--edge) var(--status-h); 
 .sheet-log li.auto { background: color-mix(in srgb, var(--signal) 9%, var(--bg)); border-left: 3px solid var(--signal); }
 .sheet-log li.auto b { color: var(--muted); opacity: 1; }
 .sheet-log li.title .msg-text { font-family: var(--f-mono); font-size: 12.5px; }
-.sheet-log li.press { background: var(--ink); color: var(--bg); padding: 9px 16px; font-size: 12px; }
+.click-row { align-self: flex-end; display: flex; gap: 6px; }
+.slack-btn { font: 500 13px/1 var(--f-body); padding: 8px 12px; border: 1px solid var(--rule); border-radius: 4px; background: var(--bg); color: var(--ink); transition: transform .12s ease, background .2s ease, color .2s ease, opacity .2s ease; }
+.slack-btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.slack-btn.pressing { transform: scale(.92); }
+.slack-btn.pressed { background: transparent; color: var(--ink); border-color: var(--rule); }
+.click-row.clicked .slack-btn:not([data-target]) { opacity: .35; }
+.sheet-press { align-self: center; }
+.sheet-press .slack-btn { font: 500 12px/1 var(--f-mono); letter-spacing: .06em; padding: 10px 18px; border-radius: 0; }
+.chat-log li.typing .msg-text::after, .sheet-log li.pick.typing .msg-text::after { content: "▍"; color: var(--signal); animation: caret 1s steps(1) infinite; }
+@keyframes caret { 50% { opacity: 0; } }
+.sheet-log li.auto.pop { animation: pop .7s ease-out; }
+@keyframes pop { from { background: color-mix(in srgb, var(--signal) 45%, var(--bg)); } }
 
 /* Cases */
 .cases-head { display: grid; grid-template-columns: 64px 88px minmax(0, 1.3fr) minmax(0, 1fr) 150px; gap: 20px; color: var(--muted); padding: 0 20px 10px; }

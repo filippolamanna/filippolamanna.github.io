@@ -119,8 +119,7 @@
           <li data-kind="them" data-wait="1600"><b>Support agent</b><span class="msg-text">The refund for leg 1 is still stuck. @Orb hound</span></li>
           <li data-kind="label" data-wait="700"><span class="msg-text">DRAFTING BRIEF · REVIEWED ✓</span></li>
           <li data-kind="us" data-wait="700"><b>Orb</b><span class="msg-text">Brief ready: chase the refund for leg 1. A person needs to press Send.</span></li>
-          <li data-kind="label" data-wait="600"><span class="msg-text">AWAITING APPROVAL</span></li>
-          <li data-kind="them" data-wait="1500"><b>Team lead</b><span class="msg-text">Send.</span></li>
+          <li data-kind="click" class="click-row clicked" data-wait="500"><span class="slack-btn primary pressed" data-target data-before="Send" data-after="✓ Sent by team lead">✓ Sent by team lead</span><span class="slack-btn">Redraft</span><span class="slack-btn">Cancel</span></li>
           <li data-kind="label" class="done" data-wait="500"><span class="msg-text">HOUND LIVE · CASE HANDED OFF</span></li>
             </ol>
           </figure>
@@ -131,17 +130,17 @@
             <figcaption class="chat-head mono"><span>SIMULATED · INCIDENT SHEET</span><span>5 / 5</span></figcaption>
             <ol class="chat-log sheet-log" data-chat>
               <li data-kind="label" data-wait="400"><span class="msg-text">NEW INCIDENT</span></li>
-              <li data-kind="them" class="field pick" data-wait="1100"><b>Incident type</b><span class="msg-text">Quantity discrepancy</span></li>
-              <li data-kind="them" class="field pick" data-wait="900"><b>SKU</b><span class="msg-text">Cherry tomatoes 250g</span></li>
+              <li data-kind="them" data-type="1" class="field pick" data-wait="1100"><b>Incident type</b><span class="msg-text">Quantity discrepancy</span></li>
+              <li data-kind="them" data-type="1" class="field pick" data-wait="900"><b>SKU</b><span class="msg-text">Cherry tomatoes 250g</span></li>
               <li data-kind="label" data-wait="500"><span class="msg-text">SUPPLIERS FILTERED TO THIS SKU · 2</span></li>
-              <li data-kind="them" class="field pick" data-wait="900"><b>Supplier</b><span class="msg-text">Supplier A</span></li>
-              <li data-kind="us" class="field auto" data-wait="600"><b>Expected</b><span class="msg-text">400 units · delivery week 11</span></li>
-              <li data-kind="us" class="field auto" data-wait="300"><b>Recipes</b><span class="msg-text">Week 11 · 3 recipes</span></li>
-              <li data-kind="us" class="field auto" data-wait="300"><b>Priority</b><span class="msg-text">High</span></li>
-              <li data-kind="them" class="field typed" data-wait="1300"><b>Received</b><span class="msg-text">310 units</span></li>
+              <li data-kind="them" data-type="1" class="field pick" data-wait="900"><b>Supplier</b><span class="msg-text">Supplier A</span></li>
+              <li data-kind="us" data-type="0" class="field auto" data-wait="600"><b>Expected</b><span class="msg-text">400 units · delivery week 11</span></li>
+              <li data-kind="us" data-type="0" class="field auto" data-wait="300"><b>Recipes</b><span class="msg-text">Week 11 · 3 recipes</span></li>
+              <li data-kind="us" data-type="0" class="field auto" data-wait="300"><b>Priority</b><span class="msg-text">High</span></li>
+              <li data-kind="them" data-type="1" class="field typed" data-wait="1300"><b>Received</b><span class="msg-text">310 units</span></li>
               <li data-kind="label" data-wait="500"><span class="msg-text">TITLE WRITTEN BY RULE</span></li>
-              <li data-kind="us" class="field auto title" data-wait="500"><b>Title</b><span class="msg-text">QTY · Supplier A · Cherry tomatoes 250g · −90 units · W11</span></li>
-              <li data-kind="label" class="press" data-wait="900"><span class="msg-text">CREATE TICKET →</span></li>
+              <li data-kind="us" data-type="0" class="field auto title" data-wait="500"><b>Title</b><span class="msg-text">QTY · Supplier A · Cherry tomatoes 250g · −90 units · W11</span></li>
+              <li data-kind="click" class="click-row clicked sheet-press" data-wait="700"><span class="slack-btn primary pressed" data-target data-before="CREATE TICKET →" data-after="✓ SENT">✓ SENT</span></li>
               <li data-kind="label" class="done" data-wait="600"><span class="msg-text">TICKET CREATED VIA API ✓</span></li>
             </ol>
           </figure>

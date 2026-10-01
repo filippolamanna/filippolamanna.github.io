@@ -51,21 +51,39 @@
   function real(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
   async function whileOffscreen() { while (!visible) await real(250); }
 
-  async function type(el, full, token) {
-    for (var n = 2; n < full.length; n += 2) {
+  // Messages type fast, two characters a tick; a person filling a field types one at a time.
+  async function type(el, full, token, human) {
+    var step = human ? 1 : 2, tick = human ? 55 : 18;
+    for (var n = step; n < full.length; n += step) {
       if (token !== run) return;
       el.textContent = full.slice(0, n);
-      await scripted(18);
+      await scripted(tick);
     }
     el.textContent = full;
+  }
+
+  async function press(li, token) {
+    var btn = li.querySelector('[data-target]');
+    if (!btn) return;
+    await scripted(900);
+    if (token !== run) return;
+    btn.classList.add('pressing');
+    await scripted(220);
+    btn.classList.remove('pressing');
+    btn.classList.add('pressed');
+    btn.textContent = btn.dataset.after;
+    li.classList.add('clicked');
   }
 
   async function play(i, token) {
     var d = logs[i], log = d.log;
     d.items.forEach(function (li, k) {
       li.hidden = true;
+      li.classList.remove('typing', 'pop', 'clicked');
       var t = li.querySelector('.msg-text');
       if (t) t.textContent = d.texts[k];
+      var btn = li.querySelector('[data-target]');
+      if (btn) { btn.classList.remove('pressed', 'pressing'); btn.textContent = btn.dataset.before; }
     });
     log.removeAttribute('data-done');
     log.setAttribute('data-playing', '');
@@ -77,11 +95,13 @@
       await scripted(Number(li.dataset.wait) || 700);
       if (token !== run) return false;
       var el = li.querySelector('.msg-text');
-      var typed = li.dataset.kind === 'us' && el;
-      if (typed) el.textContent = '';
+      var typed = el && (li.dataset.type ? li.dataset.type === '1' : li.dataset.kind === 'us');
+      if (typed) { el.textContent = ''; li.classList.add('typing'); }
+      else if (li.dataset.type === '0') li.classList.add('pop');
       li.hidden = false;
       log.scrollTop = log.scrollHeight;
-      if (typed) await type(el, d.texts[k], token);
+      if (typed) { await type(el, d.texts[k], token, li.dataset.type === '1'); li.classList.remove('typing'); }
+      if (li.dataset.kind === 'click') await press(li, token);
       log.scrollTop = log.scrollHeight;
     }
     log.setAttribute('data-done', '');
