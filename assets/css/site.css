@@ -138,7 +138,7 @@ main { position: relative; padding: var(--frame-h) var(--edge) var(--status-h); 
 .cases-group { margin: 0 0 14px; color: var(--muted); font-weight: 500; }
 .cases + .cases-group { margin-top: 48px; }
 .hero-role { margin: 0 0 14px; font-weight: 500; }
-.to-cases { display: none; text-decoration: none; margin-top: 4px; }
+.to-cases { display: none; text-decoration: none; padding: 8px 0; }
 .career { list-style: none; margin: 0 0 28px; padding: 0; border-top: 1px solid var(--ink); }
 .career li { display: grid; grid-template-columns: 180px minmax(0, 1fr); padding: 12px 0; border-bottom: 1px solid var(--rule); font-size: 17px; }
 .career-when { color: var(--muted); padding-top: 3px; }
@@ -151,7 +151,7 @@ main { position: relative; padding: var(--frame-h) var(--edge) var(--status-h); 
 .case-no { color: var(--muted); }
 .case-thumb { width: 88px; height: 88px; object-fit: cover; }
 .case-main { display: grid; gap: 4px; min-width: 0; }
-.case-name { font: 700 clamp(34px, 3.6vw, 52px)/.9 var(--f-display); text-transform: uppercase; transition: transform .2s ease; }
+.case-name { font: 700 clamp(30px, 3.6vw, 52px)/.9 var(--f-display); text-transform: uppercase; transition: transform .2s ease; }
 .case:hover .case-name { transform: translateX(6px); }
 .case-kind { color: var(--muted); }
 .case-result { font-size: 16px; }
@@ -187,11 +187,11 @@ main { position: relative; padding: var(--frame-h) var(--edge) var(--status-h); 
 .status { min-height: 1.6em; margin: 0; }
 .status[data-state="ok"], .status[data-state="error"] { color: var(--stamp); }
 .elsewhere { display: flex; gap: 28px; margin: 24px 0 0; }
-.elsewhere a { text-decoration: none; }
+.elsewhere a { display: inline-block; padding: 8px 0; text-decoration: none; }
 .elsewhere a:hover { color: var(--stamp); }
 
 /* Project pages */
-.back { display: inline-block; margin-top: 28px; text-decoration: none; }
+.back { display: inline-block; margin-top: 20px; padding: 8px 0; text-decoration: none; }
 .back:hover { color: var(--stamp); }
 .project-head { padding: 8vh 0 7vh; display: grid; gap: 22px; justify-items: start; border-bottom: 1px solid var(--rule); }
 .project-top { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
@@ -241,14 +241,11 @@ main { position: relative; padding: var(--frame-h) var(--edge) var(--status-h); 
 .next-desc { color: var(--muted); font-size: 18px; }
 @media (prefers-reduced-motion: reduce) { .next a, .next-arrow { transition: none; } .next a:hover .next-arrow { transform: none; } }
 
-@media (max-width: 760px) {
-  .menu-btn { display: block; }
-  .nav { display: none; position: fixed; top: var(--frame-h); left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 18px; padding: 20px var(--gutter) 28px; background: var(--bg); border-bottom: 1px solid var(--rule); }
-  :root[data-menu-open] .nav { display: flex; }
-  .frame-bottom .status-right { display: none; }
-  .row { grid-template-columns: 1fr; gap: 20px; padding: 44px 0; }
-  .chapters { grid-template-columns: 1fr; }
-  .chapter { padding: 40px 0; }
+/* Tablets: section labels go above the content; below 900 the hero and case rows stack */
+@media (max-width: 1100px) {
+  .row { grid-template-columns: 1fr; gap: 20px; }
+}
+@media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; gap: 32px; }
   .chat { height: 440px; }
   .cases-head { display: none; }
@@ -258,10 +255,21 @@ main { position: relative; padding: var(--frame-h) var(--edge) var(--status-h); 
   .case-main { grid-area: main; }
   .case-result { grid-area: result; margin-top: 8px; }
   .case .stamp { grid-area: stamp; margin-top: 6px; }
+}
+
+@media (max-width: 760px) {
+  .menu-btn { display: block; }
+  .nav { display: none; position: fixed; top: var(--frame-h); left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 18px; padding: 20px var(--gutter) 28px; background: var(--bg); border-bottom: 1px solid var(--rule); }
+  :root[data-menu-open] .nav { display: flex; }
+  .frame-bottom .status-right { display: none; }
+  .row { grid-template-columns: 1fr; gap: 20px; padding: 44px 0; }
+  .chapters { grid-template-columns: 1fr; }
+  .chapter { padding: 40px 0; }
   .profile { grid-template-columns: 1fr; }
   .profile dt { border-bottom: 0; padding-bottom: 0; }
   .profile dd { padding-top: 4px; }
   .to-cases { display: inline-block; }
+  .project-head .display { font-size: clamp(40px, 13vw, 64px); }
   .career li { grid-template-columns: 1fr; gap: 2px; }
   .ticket { padding: 28px 18px 22px; box-shadow: 4px 4px 0 var(--panel); }
   .meta { grid-template-columns: 1fr 1fr; gap: 14px 0; }
