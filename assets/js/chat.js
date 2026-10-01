@@ -13,7 +13,7 @@
     var texts = items.map(function (li) {
       var t = li.querySelector('.msg-text');
       return t ? t.textContent : '';
-    });
+    }); // .msg-text holds only the value; dropdown options live in a sibling
     if (!reduce) {
       var copy = log.cloneNode(true);
       copy.removeAttribute('data-chat');
@@ -23,6 +23,41 @@
     }
     return { log: log, items: items, texts: texts };
   });
+
+  // Rounds: one Hound scenario, then each of the other demos. Hound scenarios are drawn at random,
+  // all three before any repeats, and a visit starts with a different one from the last visit.
+  var HOUND = [], OTHER = [];
+  demos.forEach(function (d, i) { (d.dataset.demo.indexOf('hound') === 0 ? HOUND : OTHER).push(i); });
+  var random = window.__DEMO_RANDOM__ !== false;
+  var hold = Number(window.__DEMO_HOLD__) || 4000;
+  var KEY = 'lastHoundDemo';
+  var lastHound = -1;
+  if (random) { try { lastHound = Number(localStorage.getItem(KEY)); } catch (e) { /* storage blocked */ } }
+  var houndQueue = [];
+  function shuffled(a) {
+    a = a.slice();
+    if (!random) return a;
+    for (var i = a.length - 1; i > 0; i--) { var k = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[k]; a[k] = t; }
+    return a;
+  }
+  function nextHound() {
+    if (!houndQueue.length) {
+      houndQueue = shuffled(HOUND);
+      if (houndQueue.length > 1 && houndQueue[0] === lastHound) houndQueue.push(houndQueue.shift());
+    }
+    var h = houndQueue.shift();
+    remember(h);
+    return h;
+  }
+  function remember(h) {
+    lastHound = h;
+    if (random) { try { localStorage.setItem(KEY, String(h)); } catch (e) { /* storage blocked */ } }
+  }
+  function after(i) {
+    var o = OTHER.indexOf(i);
+    if (o === -1) return OTHER.length ? OTHER[0] : nextHound();
+    return o + 1 < OTHER.length ? OTHER[o + 1] : nextHound();
+  }
 
   var current = 0;
   function show(i) {
@@ -75,11 +110,39 @@
     li.classList.add('clicked');
   }
 
+  // A dropdown pick: open the list, walk the highlight to the choice, click it, close.
+  async function pick(li, el, value, token) {
+    var dd = li.querySelector('.dd');
+    if (!dd) { el.textContent = value; return; }
+    var opts = Array.prototype.slice.call(dd.querySelectorAll('[data-option]'));
+    var choice = Number(li.dataset.choice) || 0;
+    el.textContent = 'Select…';
+    li.classList.add('choosing');
+    await scripted(450);
+    if (token !== run) return;
+    dd.hidden = false;
+    for (var o = 0; o <= choice; o++) {
+      opts.forEach(function (x, n) { x.classList.toggle('hl', n === o); });
+      await scripted(o === 0 ? 450 : 320);
+      if (token !== run) return;
+    }
+    opts[choice].classList.add('pressing');
+    await scripted(220);
+    if (token !== run) return;
+    opts[choice].classList.remove('pressing');
+    dd.hidden = true;
+    opts.forEach(function (x) { x.classList.remove('hl'); });
+    li.classList.remove('choosing');
+    el.textContent = value;
+  }
+
   async function play(i, token) {
     var d = logs[i], log = d.log;
     d.items.forEach(function (li, k) {
       li.hidden = true;
-      li.classList.remove('typing', 'pop', 'clicked');
+      li.classList.remove('typing', 'pop', 'clicked', 'choosing');
+      var dd = li.querySelector('.dd');
+      if (dd) dd.hidden = true;
       var t = li.querySelector('.msg-text');
       if (t) t.textContent = d.texts[k];
       var btn = li.querySelector('[data-target]');
@@ -95,12 +158,15 @@
       await scripted(Number(li.dataset.wait) || 700);
       if (token !== run) return false;
       var el = li.querySelector('.msg-text');
-      var typed = el && (li.dataset.type ? li.dataset.type === '1' : li.dataset.kind === 'us');
+      var picking = el && li.dataset.type === 'pick';
+      var typed = el && !picking && (li.dataset.type ? li.dataset.type === '1' : li.dataset.kind === 'us');
       if (typed) { el.textContent = ''; li.classList.add('typing'); }
+      else if (picking) el.textContent = 'Select…';
       else if (li.dataset.type === '0') li.classList.add('pop');
       li.hidden = false;
       log.scrollTop = log.scrollHeight;
       if (typed) { await type(el, d.texts[k], token, li.dataset.type === '1'); li.classList.remove('typing'); }
+      if (picking) await pick(li, el, d.texts[k], token);
       if (li.dataset.kind === 'click') await press(li, token);
       log.scrollTop = log.scrollHeight;
     }
@@ -115,13 +181,18 @@
       show(i);
       var finished = await play(i, token);
       if (!finished || token !== run) return;
-      await real(4000);
+      await real(hold);
       await whileOffscreen();
       if (token !== run) return;
-      i = (i + 1) % demos.length;
+      i = after(i);
     }
   }
 
-  buttons.forEach(function (b, j) { b.addEventListener('click', function () { loop(j); }); });
-  loop(0);
+  buttons.forEach(function (b, j) {
+    b.addEventListener('click', function () {
+      if (HOUND.indexOf(j) !== -1) { houndQueue = houndQueue.filter(function (h) { return h !== j; }); remember(j); }
+      loop(j);
+    });
+  });
+  loop(nextHound());
 })();

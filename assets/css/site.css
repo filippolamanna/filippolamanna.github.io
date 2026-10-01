@@ -96,6 +96,12 @@ main { position: relative; padding: var(--frame-h) var(--edge) var(--status-h); 
 .sheet-log li.field { max-width: 100%; align-self: stretch; display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; align-items: baseline; padding: 8px 12px; border-radius: 0; background: var(--bg); color: var(--ink); border: 1px solid var(--rule); font-size: 14px; }
 .sheet-log li.field b { margin: 0; }
 .sheet-log li.pick .msg-text::after { content: " ▾"; color: var(--muted); }
+.sheet-log li.choosing .msg-text { color: var(--muted); }
+.sheet-log .dd { grid-column: 2; display: grid; margin-top: 6px; background: var(--paper); border: 1px solid var(--rule); box-shadow: 0 6px 18px rgba(0,0,0,.08); }
+.sheet-log .dd[hidden] { display: none; }
+.sheet-log .dd [data-option] { padding: 7px 10px; font-size: 13.5px; transition: background .15s ease; }
+.sheet-log .dd [data-option].hl { background: color-mix(in srgb, var(--signal) 14%, var(--paper)); }
+.sheet-log .dd [data-option].pressing { background: color-mix(in srgb, var(--signal) 35%, var(--paper)); }
 .sheet-log li.auto { background: color-mix(in srgb, var(--signal) 9%, var(--bg)); border-left: 3px solid var(--signal); }
 .sheet-log li.auto b { color: var(--muted); opacity: 1; }
 .sheet-log li.title .msg-text { font-family: var(--f-mono); font-size: 12.5px; }

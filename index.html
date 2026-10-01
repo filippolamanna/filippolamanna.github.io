@@ -130,10 +130,10 @@
             <figcaption class="chat-head mono"><span>SIMULATED · INCIDENT SHEET</span><span>5 / 5</span></figcaption>
             <ol class="chat-log sheet-log" data-chat>
               <li data-kind="label" data-wait="400"><span class="msg-text">NEW INCIDENT</span></li>
-              <li data-kind="them" data-type="1" class="field pick" data-wait="1100"><b>Incident type</b><span class="msg-text">Quantity discrepancy</span></li>
-              <li data-kind="them" data-type="1" class="field pick" data-wait="900"><b>SKU</b><span class="msg-text">Cherry tomatoes 250g</span></li>
+              <li data-kind="them" data-type="pick" data-choice="2" class="field pick" data-wait="1100"><b>Incident type</b><span class="msg-text">Quantity discrepancy</span><span class="dd" hidden><span data-option>Supplier no-show</span><span data-option>Missing SKU</span><span data-option>Quantity discrepancy</span><span data-option>Quality issue</span></span></li>
+              <li data-kind="them" data-type="pick" data-choice="1" class="field pick" data-wait="900"><b>SKU</b><span class="msg-text">Cherry tomatoes 250g</span><span class="dd" hidden><span data-option>Basmati rice 1kg</span><span data-option>Cherry tomatoes 250g</span><span data-option>Greek yoghurt 150g</span></span></li>
               <li data-kind="label" data-wait="500"><span class="msg-text">SUPPLIERS FILTERED TO THIS SKU · 2</span></li>
-              <li data-kind="them" data-type="1" class="field pick" data-wait="900"><b>Supplier</b><span class="msg-text">Supplier A</span></li>
+              <li data-kind="them" data-type="pick" data-choice="0" class="field pick" data-wait="900"><b>Supplier</b><span class="msg-text">Supplier A</span><span class="dd" hidden><span data-option>Supplier A</span><span data-option>Supplier B</span></span></li>
               <li data-kind="us" data-type="0" class="field auto" data-wait="600"><b>Expected</b><span class="msg-text">400 units · delivery week 11</span></li>
               <li data-kind="us" data-type="0" class="field auto" data-wait="300"><b>Recipes</b><span class="msg-text">Week 11 · 3 recipes</span></li>
               <li data-kind="us" data-type="0" class="field auto" data-wait="300"><b>Priority</b><span class="msg-text">High</span></li>
