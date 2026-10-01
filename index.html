@@ -125,6 +125,27 @@
             </ol>
           </figure>
         </div>
+        <div class="demo" data-demo="magpie-browser" hidden>
+          <p class="chat-intro"><strong>Simulated demo:</strong> Magpie, a Chrome extension. It captures the booking while the agent works in the admin tool, then fills the vendor's form in one click.</p>
+          <figure class="chat">
+            <figcaption class="chat-head mono"><span>SIMULATED · MAGPIE</span><span class="tabs"><span class="tab" data-tab="admin">ADMIN</span><span class="tab active" data-tab="vendor">VENDOR</span></span></figcaption>
+            <ol class="chat-log sheet-log" data-chat>
+              <li data-kind="label" hidden data-wait="400"><span class="msg-text">ADMIN TOOL · ORDER #A-10492 · ADD-ON PURCHASE</span></li>
+              <li data-kind="them" data-type="none" class="field" hidden data-wait="250"><b>Booking ref</b><span class="msg-text">K7Q2XM</span></li>
+              <li data-kind="them" data-type="none" class="field" hidden data-wait="250"><b>Surname</b><span class="msg-text">ROSSI</span></li>
+              <li data-kind="them" data-type="none" class="field" hidden data-wait="250"><b>First name</b><span class="msg-text">GIULIA</span></li>
+              <li data-kind="them" data-type="none" class="field" hidden data-wait="250"><b>Add-on</b><span class="msg-text">1 × checked bag 23 kg</span></li>
+              <li data-kind="label" class="toast" hidden data-wait="900"><span class="msg-text">✓ CAPTURED BY MAGPIE</span></li>
+              <li data-kind="tab" data-tab="vendor" hidden data-wait="1400"></li>
+              <li data-kind="label" data-wait="500"><span class="msg-text">VENDOR SITE · MANAGE BOOKING</span></li>
+              <li data-kind="them" data-type="none" data-fill class="field" data-wait="400"><b>Booking reference</b><span class="msg-text">K7Q2XM</span></li>
+              <li data-kind="them" data-type="none" data-fill class="field" data-wait="250"><b>Surname</b><span class="msg-text">ROSSI</span></li>
+              <li data-kind="click" class="click-row clicked chip-row" data-fills data-wait="700"><span class="slack-btn primary pressed" data-target data-before="Fill with Magpie · K7Q2XM · ROSSI" data-after="✓ Filled by Magpie">✓ Filled by Magpie</span></li>
+              <li data-kind="click" class="click-row clicked sheet-press" data-wait="600"><span class="slack-btn primary pressed" data-target data-before="FIND BOOKING →" data-after="✓ FOUND">✓ FOUND</span></li>
+              <li data-kind="label" class="done" data-wait="600"><span class="msg-text">BOOKING FOUND ✓ · 1 CLICK, 0 TYPED</span></li>
+            </ol>
+          </figure>
+        </div>
         <div class="demo" data-demo="incident-ticket" hidden>
           <p class="chat-intro"><strong>Simulated demo:</strong> Ticketinator, my incident classification system in a Google Sheet. The warehouse office picks three fields; the sheet fills the rest, writes the title and sends the ticket.</p>
           <figure class="chat">
@@ -147,7 +168,7 @@
           </figure>
         </div>
         </div>
-        <nav class="demo-nav mono" data-demo-nav aria-label="Demos" hidden><button type="button" data-goto="hound" aria-current="true">Hound</button> <button type="button" data-goto="orb-slack">Orb</button> <button type="button" data-goto="incident-ticket">Ticketinator</button></nav>
+        <nav class="demo-nav mono" data-demo-nav aria-label="Demos" hidden><button type="button" data-goto="hound" aria-current="true">Hound</button> <button type="button" data-goto="orb-slack">Orb</button> <button type="button" data-goto="magpie-browser">Magpie</button> <button type="button" data-goto="incident-ticket">Ticketinator</button></nav>
       </div>
     </div>
   </section>

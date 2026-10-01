@@ -109,7 +109,7 @@
     el.textContent = full;
   }
 
-  async function press(li, token) {
+  async function press(li, token, d) {
     var btn = li.querySelector('[data-target]');
     if (!btn) return;
     await scripted(900);
@@ -120,6 +120,19 @@
     btn.classList.add('pressed');
     btn.textContent = btn.dataset.after;
     li.classList.add('clicked');
+    if (li.hasAttribute('data-fills')) {
+      // One click fills every waiting field at once.
+      d.items.forEach(function (f, k) {
+        if (!f.hasAttribute('data-fill')) return;
+        f.querySelector('.msg-text').textContent = d.texts[k];
+        f.classList.remove('pop'); void f.offsetWidth; f.classList.add('pop');
+      });
+    }
+  }
+
+  function setTab(log, name) {
+    var tabs = log.closest('figure').querySelectorAll('.tab');
+    Array.prototype.forEach.call(tabs, function (t) { t.classList.toggle('active', t.dataset.tab === name); });
   }
 
   // A dropdown pick: open the list, walk the highlight to the choice, click it, close.
@@ -163,23 +176,33 @@
     log.removeAttribute('data-done');
     log.setAttribute('data-playing', '');
     log.scrollTop = 0;
+    var firstTab = log.closest('figure').querySelector('.tab');
+    if (firstTab) setTab(log, firstTab.dataset.tab);
     for (var k = 0; k < d.items.length; k++) {
       await whileOffscreen();
       if (token !== run) return false;
       var li = d.items[k];
       await scripted(Number(li.dataset.wait) || 700);
       if (token !== run) return false;
+      if (li.dataset.kind === 'tab') {
+        // Switching tabs is a navigation: the previous page goes away.
+        for (var p = 0; p < k; p++) d.items[p].hidden = true;
+        setTab(log, li.dataset.tab);
+        log.scrollTop = 0;
+        continue;
+      }
       var el = li.querySelector('.msg-text');
       var picking = el && li.dataset.type === 'pick';
       var typed = el && !picking && (li.dataset.type ? li.dataset.type === '1' : li.dataset.kind === 'us');
       if (typed) { el.textContent = ''; li.classList.add('typing'); }
       else if (picking) el.textContent = 'Select…';
+      if (li.hasAttribute('data-fill')) el.textContent = '';
       else if (li.dataset.type === '0') li.classList.add('pop');
       li.hidden = false;
       log.scrollTop = log.scrollHeight;
       if (typed) { await type(el, d.texts[k], token, li.dataset.type === '1'); li.classList.remove('typing'); }
       if (picking) await pick(li, el, d.texts[k], token);
-      if (li.dataset.kind === 'click') await press(li, token);
+      if (li.dataset.kind === 'click') await press(li, token, d);
       log.scrollTop = log.scrollHeight;
     }
     log.setAttribute('data-done', '');
