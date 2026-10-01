@@ -28,8 +28,8 @@
   <nav id="nav" class="nav mono" aria-label="Main">
     <a href="/#work">CASES</a>
     <a href="/#about">ABOUT</a>
-    <a href="/#contact">OPEN A CASE</a>
-    <button type="button" data-theme-toggle>DARK</button>
+    <a href="/#contact">CONTACT</a>
+    <button type="button" data-theme-toggle>THEME</button>
   </nav>
 </header>
 <footer class="frame-bottom mono">
@@ -43,6 +43,8 @@
       <div class="hero-copy">
         <h1 class="display hero-title">I turn manual work into systems.</h1>
         <p class="hero-lede">I work in operations and product in Milan, and I build the tools that take manual work out of it: AI agents, bots, low-code apps and automations, plus the odd app of my own.</p>
+        <p class="hero-role">Looking for an ops or product role at a startup, where I build the tooling myself.</p>
+        <a class="to-cases mono" href="#work">SEE THE CASES ↓</a>
         <p class="mono muted">STARTUP · OPS · AI AUTOMATION · PRODUCT MANAGEMENT</p>
       </div>
       <div class="chat-wrap">
@@ -169,7 +171,7 @@
           </figure>
         </div>
         </div>
-        <nav class="demo-nav mono" data-demo-nav aria-label="Demos" hidden><button type="button" data-goto="hound" aria-current="true">Hound</button> <button type="button" data-goto="orb-slack">Orb</button> <button type="button" data-goto="magpie-browser">Magpie</button> <button type="button" data-goto="incident-ticket">Ticketinator</button></nav>
+        <nav class="demo-nav mono" data-demo-nav aria-label="Demos" hidden><span class="demo-label">▶ DEMOS</span> <button type="button" data-goto="hound" aria-current="true">Hound</button> <button type="button" data-goto="orb-slack">Orb</button> <button type="button" data-goto="magpie-browser">Magpie</button> <button type="button" data-goto="incident-ticket">Ticketinator</button></nav>
       </div>
     </div>
   </section>
@@ -177,6 +179,7 @@
   <section class="row" id="work">
     <p class="row-label mono">01 / CASES</p>
     <div class="row-body">
+      <h3 class="cases-group mono">WORK</h3>
       <div class="cases-head mono" aria-hidden="true"><span>NO.</span><span></span><span>CASE</span><span>RESULT</span><span>STATUS</span></div>
       <ul class="cases">
         <li><a class="case" href="/work/hound/">
@@ -200,40 +203,43 @@
           <span class="case-result">Answers agents' routine checks in the thread, so they stay on the case</span>
           <span class="stamp">LIVE</span>
         </a></li>
-        <li><a class="case" href="/work/cadence/">
+        <li><a class="case" href="/work/ticketinator/">
           <span class="case-no mono">#004</span>
+          <img class="case-thumb" src="/assets/img/card-ticketinator.svg" alt="" width="600" height="600" loading="lazy">
+          <span class="case-main"><span class="case-name">Ticketinator</span><span class="case-kind mono">Incident classification · Sheets + API</span></span>
+          <span class="case-result">Incident tickets 90% auto-filled and sent with one click</span>
+          <span class="stamp">SHIPPED</span>
+        </a></li>
+        <li><a class="case" href="/work/inventory-counting-app/">
+          <span class="case-no mono">#005</span>
+          <img class="case-thumb" src="/assets/img/card-inventory-counting-app.svg" alt="" width="600" height="600" loading="lazy">
+          <span class="case-main"><span class="case-name">Inventory Counting App</span><span class="case-kind mono">Low-code app · shop-floor stock counts</span></span>
+          <span class="case-result">Guided weekly stock counts that kept waste under 1% of COGS</span>
+          <span class="stamp">SHIPPED</span>
+        </a></li>
+      </ul>
+      <h3 class="cases-group mono">OFF THE CLOCK</h3>
+      <ul class="cases">
+        <li><a class="case" href="/work/cadence/">
+          <span class="case-no mono">#006</span>
           <img class="case-thumb" src="/assets/img/card-cadence.png" alt="" width="352" height="352" loading="lazy">
           <span class="case-main"><span class="case-name">Cadence</span><span class="case-kind mono">iOS · watchOS · personal</span></span>
           <span class="case-result">Running music that reacts to your body</span>
           <span class="stamp">UNDER WRAPS</span>
         </a></li>
         <li><a class="case" href="/work/cirulla/">
-          <span class="case-no mono">#005</span>
+          <span class="case-no mono">#007</span>
           <img class="case-thumb" src="/assets/img/card-cirulla.svg" alt="" width="600" height="600" loading="lazy">
           <span class="case-main"><span class="case-name">Cirulla</span><span class="case-kind mono">iOS · Ligurian card game</span></span>
           <span class="case-result">The Ligurian card game, with the rules as they're really played</span>
           <span class="stamp">PERSONAL</span>
         </a></li>
         <li><a class="case" href="/work/run-form-tracker/">
-          <span class="case-no mono">#006</span>
+          <span class="case-no mono">#008</span>
           <img class="case-thumb" src="/assets/img/card-run-form-tracker.svg" alt="" width="600" height="600" loading="lazy">
           <span class="case-main"><span class="case-name">Run Form Tracker</span><span class="case-kind mono">Hardware · ESP32 + Python</span></span>
           <span class="case-result">Two leg pods measure left/right running symmetry</span>
           <span class="stamp">IN PROGRESS</span>
-        </a></li>
-        <li><a class="case" href="/work/inventory-counting-app/">
-          <span class="case-no mono">#007</span>
-          <img class="case-thumb" src="/assets/img/card-inventory-counting-app.svg" alt="" width="600" height="600" loading="lazy">
-          <span class="case-main"><span class="case-name">Inventory Counting App</span><span class="case-kind mono">Low-code app · shop-floor stock counts</span></span>
-          <span class="case-result">Guided weekly stock counts that kept waste under 1% of COGS</span>
-          <span class="stamp">SHIPPED</span>
-        </a></li>
-        <li><a class="case" href="/work/ticketinator/">
-          <span class="case-no mono">#008</span>
-          <img class="case-thumb" src="/assets/img/card-ticketinator.svg" alt="" width="600" height="600" loading="lazy">
-          <span class="case-main"><span class="case-name">Ticketinator</span><span class="case-kind mono">Incident classification · Sheets + API</span></span>
-          <span class="case-result">Incident tickets 90% auto-filled and sent with one click</span>
-          <span class="stamp">SHIPPED</span>
         </a></li>
       </ul>
     </div>
@@ -251,12 +257,17 @@
         <dt class="mono">TECH</dt><dd>Curious about new tools, and I like tinkering with them.</dd>
         <dt class="mono">ON REPEAT</dt><dd>Fred again..</dd>
       </dl>
+      <ul class="career">
+        <li><span class="career-when mono">2026 → NOW</span><span>Founder's Associate, Operations · travel-tech startup</span></li>
+        <li><span class="career-when mono">2024 → 2026</span><span>Buyer, business &amp; operations analytics · global meal-kit company</span></li>
+        <li><span class="career-when mono">2022 → 2024</span><span>Junior Consultant → Head of Finance · pro-bono consulting association</span></li>
+      </ul>
       <p class="mono muted">OPEN TO · STARTUP · OPS · AI AUTOMATION · PRODUCT MANAGEMENT</p>
     </div>
   </section>
 
   <section class="row" id="contact">
-    <p class="row-label mono">03 / OPEN A CASE</p>
+    <p class="row-label mono">03 / CONTACT</p>
     <div class="ticket">
       <div class="ticket-head mono"><span>CASE #009</span><span>STATUS · NEW</span><span>PRIORITY · YOURS</span></div>
       <h2 class="display ticket-title">Open a case.</h2>

@@ -18,9 +18,9 @@
   }
   function label() {
     document.querySelectorAll('[data-theme-toggle]').forEach(function (b) {
-      var target = current() === 'dark' ? 'light' : 'dark';
-      b.textContent = target.toUpperCase();
-      b.setAttribute('aria-label', target.toUpperCase() + ': switch to ' + target + ' theme');
+      var now = current(), target = now === 'dark' ? 'light' : 'dark';
+      b.textContent = now.toUpperCase();
+      b.setAttribute('aria-label', 'Theme: ' + now + '. Switch to ' + target + ' theme');
     });
   }
   var mq = matchMedia('(prefers-color-scheme: dark)');
