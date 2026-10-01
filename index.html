@@ -45,10 +45,11 @@
         <p class="mono muted">STARTUP · OPS · AI AUTOMATION · PRODUCT MANAGEMENT</p>
       </div>
       <div class="chat-wrap">
-        <p class="chat-intro"><strong>Simulated demo:</strong> Hound, my supervised AI agent, chasing a stuck refund with a vendor's support rep. Orange tags are the checks deciding what it's allowed to say.</p>
-        <figure class="chat" aria-label="Demo: an AI agent chasing a stuck refund in a vendor's support chat">
-        <figcaption class="chat-head mono"><span>SIMULATED CHAT</span><span>HOUND ↔ REP</span></figcaption>
-        <ol class="chat-log" data-chat>
+        <div class="demo" data-demo="hound-refund">
+          <p class="chat-intro"><strong>Simulated demo:</strong> Hound, my supervised AI agent, chasing a stuck refund with a vendor's support rep. Orange tags are the checks deciding what it's allowed to say.</p>
+          <figure class="chat">
+            <figcaption class="chat-head mono"><span>SIMULATED CHAT · HOUND</span><span>1 / 5</span></figcaption>
+            <ol class="chat-log" data-chat>
           <li data-kind="label" data-wait="400"><span class="msg-text">IN QUEUE · POSITION 3</span></li>
           <li data-kind="them" data-wait="1400"><b>Support rep</b><span class="msg-text">Hi, you're chatting with Dana. How can I help?</span></li>
           <li data-kind="label" data-wait="600"><span class="msg-text">PAUSING BEFORE REPLYING</span></li>
@@ -63,8 +64,86 @@
           <li data-kind="them" data-wait="2000"><b>Support rep</b><span class="msg-text">Fair point. I've escalated it to our refunds team, reference 58213. You'll see it within 10 working days.</span></li>
           <li data-kind="us" data-wait="900"><b>Hound (AI)</b><span class="msg-text">Thanks Dana. So that's reference 58213, refund within 10 working days. Have a good day.</span></li>
           <li data-kind="label" class="done" data-wait="500"><span class="msg-text">RESOLVED · REFUND ESCALATED</span></li>
-        </ol>
-        </figure>
+        
+            </ol>
+          </figure>
+        </div>
+        <div class="demo" data-demo="hound-deflection" hidden>
+          <p class="chat-intro"><strong>Simulated demo:</strong> Hound is told to email instead, pushes back once, politely, and the rep opens the request in the chat.</p>
+          <figure class="chat">
+            <figcaption class="chat-head mono"><span>SIMULATED CHAT · HOUND</span><span>2 / 5</span></figcaption>
+            <ol class="chat-log" data-chat>
+          <li data-kind="label" data-wait="400"><span class="msg-text">IN QUEUE · POSITION 2</span></li>
+          <li data-kind="them" data-wait="1400"><b>Support rep</b><span class="msg-text">Hello, Marco here. How can I help?</span></li>
+          <li data-kind="label" data-wait="600"><span class="msg-text">PAUSING BEFORE REPLYING</span></li>
+          <li data-kind="us" data-wait="900"><b>Hound (AI)</b><span class="msg-text">Hi Marco. Order #B-20817 was cancelled on your side and the refund is still outstanding. Could you check its status?</span></li>
+          <li data-kind="label" data-wait="300"><span class="msg-text">FACT-CHECKED ✓ · DELIVERED ✓</span></li>
+          <li data-kind="them" data-wait="1800"><b>Support rep</b><span class="msg-text">For refunds please email our refunds team. They reply within 5 to 7 days.</span></li>
+          <li data-kind="label" data-wait="500"><span class="msg-text">DEFLECTION · PUSHING BACK ONCE</span></li>
+          <li data-kind="us" data-wait="900"><b>Hound (AI)</b><span class="msg-text">We've emailed twice already without an answer. Could you open the refund request from this chat instead?</span></li>
+          <li data-kind="label" data-wait="300"><span class="msg-text">FACT-CHECKED ✓ · DELIVERED ✓</span></li>
+          <li data-kind="them" data-wait="2000"><b>Support rep</b><span class="msg-text">Understood. I've opened refund request 77412 for you.</span></li>
+          <li data-kind="us" data-wait="900"><b>Hound (AI)</b><span class="msg-text">Thanks Marco. So that's request 77412. Have a good day.</span></li>
+          <li data-kind="label" class="done" data-wait="500"><span class="msg-text">RESOLVED · REQUEST OPENED</span></li>
+            </ol>
+          </figure>
+        </div>
+        <div class="demo" data-demo="hound-queue" hidden>
+          <p class="chat-intro"><strong>Simulated demo:</strong> Hound waits out a long transfer queue, keeping the session alive until the next rep picks up.</p>
+          <figure class="chat">
+            <figcaption class="chat-head mono"><span>SIMULATED CHAT · HOUND</span><span>3 / 5</span></figcaption>
+            <ol class="chat-log" data-chat>
+          <li data-kind="label" data-wait="400"><span class="msg-text">TRANSFERRED · QUEUE POSITION 4</span></li>
+          <li data-kind="label" data-wait="1400"><span class="msg-text">WAITING · 3 MIN OF SILENCE</span></li>
+          <li data-kind="us" data-wait="700"><b>Hound (AI)</b><span class="msg-text">Still here, waiting for the next agent.</span></li>
+          <li data-kind="label" data-wait="400"><span class="msg-text">KEEP-ALIVE SENT</span></li>
+          <li data-kind="label" data-wait="1600"><span class="msg-text">WAITING · QUEUE POSITION 1</span></li>
+          <li data-kind="them" data-wait="1800"><b>Support rep</b><span class="msg-text">Thanks for waiting, I'm Sara from the refunds team. I can see the transfer notes.</span></li>
+          <li data-kind="us" data-wait="900"><b>Hound (AI)</b><span class="msg-text">Thanks Sara. Order #C-31090 was cancelled on your side; the refund is the only thing left open.</span></li>
+          <li data-kind="label" data-wait="300"><span class="msg-text">FACT-CHECKED ✓ · DELIVERED ✓</span></li>
+          <li data-kind="them" data-wait="2000"><b>Support rep</b><span class="msg-text">I've approved it now. It will reach the original payment method within 10 working days.</span></li>
+          <li data-kind="us" data-wait="900"><b>Hound (AI)</b><span class="msg-text">Perfect, thank you. So: approved today, back within 10 working days.</span></li>
+          <li data-kind="label" class="done" data-wait="500"><span class="msg-text">RESOLVED · REFUND APPROVED</span></li>
+            </ol>
+          </figure>
+        </div>
+        <div class="demo" data-demo="orb-slack" hidden>
+          <p class="chat-intro"><strong>Simulated demo:</strong> Orb, a Slack bot, answers a support agent's lookup in the thread, then hands the case to Hound once a person presses Send.</p>
+          <figure class="chat">
+            <figcaption class="chat-head mono"><span>SIMULATED · ORB IN SLACK</span><span>4 / 5</span></figcaption>
+            <ol class="chat-log" data-chat>
+          <li data-kind="label" data-wait="400"><span class="msg-text">#SUPPORT · THREAD</span></li>
+          <li data-kind="them" data-wait="1200"><b>Support agent</b><span class="msg-text">@Orb flight status</span></li>
+          <li data-kind="label" data-wait="500"><span class="msg-text">READ-ONLY LOOKUP</span></li>
+          <li data-kind="us" data-wait="700"><b>Orb</b><span class="msg-text">Two legs on case #A-10492. Leg 1: cancelled. Leg 2: on schedule ✓</span></li>
+          <li data-kind="them" data-wait="1600"><b>Support agent</b><span class="msg-text">The refund for leg 1 is still stuck. @Orb hound</span></li>
+          <li data-kind="label" data-wait="700"><span class="msg-text">DRAFTING BRIEF · REVIEWED ✓</span></li>
+          <li data-kind="us" data-wait="700"><b>Orb</b><span class="msg-text">Brief ready: chase the refund for leg 1. A person needs to press Send.</span></li>
+          <li data-kind="label" data-wait="600"><span class="msg-text">AWAITING APPROVAL</span></li>
+          <li data-kind="them" data-wait="1500"><b>Team lead</b><span class="msg-text">Send.</span></li>
+          <li data-kind="label" class="done" data-wait="500"><span class="msg-text">HOUND LIVE · CASE HANDED OFF</span></li>
+            </ol>
+          </figure>
+        </div>
+        <div class="demo" data-demo="incident-ticket" hidden>
+          <p class="chat-intro"><strong>Simulated demo:</strong> the Incident Classification System. The warehouse office picks three things; the sheet fills the rest and writes the title.</p>
+          <figure class="chat">
+            <figcaption class="chat-head mono"><span>SIMULATED · INCIDENT TICKET</span><span>5 / 5</span></figcaption>
+            <ol class="chat-log" data-chat>
+          <li data-kind="label" data-wait="400"><span class="msg-text">NEW INCIDENT</span></li>
+          <li data-kind="them" data-wait="1200"><b>Warehouse office</b><span class="msg-text">Incident type → Quantity discrepancy</span></li>
+          <li data-kind="them" data-wait="1000"><b>Warehouse office</b><span class="msg-text">SKU → Cherry tomatoes 250g</span></li>
+          <li data-kind="label" data-wait="500"><span class="msg-text">SUPPLIERS FILTERED TO THIS SKU · 2</span></li>
+          <li data-kind="them" data-wait="1000"><b>Warehouse office</b><span class="msg-text">Supplier → Supplier A</span></li>
+          <li data-kind="us" data-wait="700"><b>Sheet</b><span class="msg-text">Auto-filled: expected delivery of 400 units, recipe week 11, priority high.</span></li>
+          <li data-kind="them" data-wait="1400"><b>Warehouse office</b><span class="msg-text">Received 310 units.</span></li>
+          <li data-kind="label" data-wait="500"><span class="msg-text">TITLE WRITTEN BY RULE</span></li>
+          <li data-kind="us" data-wait="700"><b>Sheet</b><span class="msg-text">QTY · Supplier A · Cherry tomatoes 250g · −90 units · W11</span></li>
+          <li data-kind="label" class="done" data-wait="500"><span class="msg-text">TICKET CREATED VIA API ✓</span></li>
+            </ol>
+          </figure>
+        </div>
+        <nav class="demo-nav mono" data-demo-nav aria-label="Demos" hidden><button type="button" data-goto="0" aria-current="true">Refund</button> <button type="button" data-goto="1">Deflection</button> <button type="button" data-goto="2">Long queue</button> <button type="button" data-goto="3">Orb</button> <button type="button" data-goto="4">Incident</button></nav>
       </div>
     </div>
   </section>
