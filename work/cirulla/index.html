@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cirulla · Filippo Lamanna</title>
-<meta name="description" content="Cirulla, the Ligurian card game, for iPhone: the regional rules as they are really played, three computer opponents, and 251 tests on the rules engine.">
+<meta name="description" content="Cirulla, the Ligurian card game, for iPhone: the regional rules as they are really played, three computer opponents, in English and Italian, and 336 automated tests.">
 <meta property="og:title" content="Cirulla · Filippo Lamanna">
 <meta property="og:description" content="The Ligurian card game of fifteen, against the computer.">
 <meta property="og:image" content="https://filippolamanna.github.io/assets/img/og.png">
@@ -55,6 +55,7 @@
     <div class="body">
       <p>Cirulla is a Ligurian card game in the Scopa family: you capture table cards that match your card or add up to 15. There are few good ways to play it on a phone, and card apps often get the regional rules wrong.</p>
       <p>This iPhone app plays a full two-player match against the computer at three difficulty levels, following the rules as they are played in Liguria. It keeps the traditional secret declarations (buona and cirulla), shows a full score breakdown after each hand, and saves automatically so you can pick up later.</p>
+      <p>It is in English and Italian. You choose the cards at first start, Ligurian or Classic, and can switch at any time, even mid-game. Settings also hold the four house rules, capture hints, haptics, match length and a choice of two app icons.</p>
     </div>
   </section>
 
@@ -62,12 +63,14 @@
     <h2 class="mono">02 · HOW IT WORKS</h2>
     <div class="body">
       <ul>
-        <li>The game engine is a separate Swift package with no user interface. It encodes every rule: captures by equal value, by sum or by sum to 15, the Ace sweep, the wild seven of hearts (the matta), the dealer's opening bonus and all end-of-hand scoring including primiera.</li>
+        <li>The game engine is a separate Swift package with no user interface. It encodes every rule: captures by equal value, by sum or by sum to 15, the Ace sweep, the seven of hearts (the matta), which takes its value only when you declare with it, the dealer's opening bonus and all end-of-hand scoring including primiera.</li>
         <li>Every match comes from a seed, so any game can be replayed exactly from its seed and list of moves. That made rule bugs reproducible.</li>
         <li>Easy plays randomly but prefers captures. Medium looks one move ahead and weighs scopa chances, the seven of diamonds, diamonds, primiera and the risk of leaving a table the opponent can sweep.</li>
         <li>Hard uses Monte Carlo search: it deals the unseen cards at random many times, plays each option to the end of the hand, and picks the move with the best average result. It only sees what a real player would see.</li>
-        <li>Declarations are never prompted: you triple-tap the table (right half for buona, left for cirulla), the way a real player speaks up. A wrong call gets a small shake and no penalty.</li>
-        <li>Match length (21, 31 or 51 points) was chosen from measured hand scores: a median hand scores 7 points, so 21 lets one big hand decide a match.</li>
+        <li>Declarations are never prompted: you triple-tap the table (right half for buona, left for cirulla), the way a real player speaks up. A wrong call gets a small shake and no penalty. A card is played with a tap or by swiping it up.</li>
+        <li>Four Ligurian house rules are on unless you switch them off: cappotto (all ten diamonds wins the match), scciupon de fotta (a scopa with the last card of the hand does not count), a monte (two or more Aces dealt to the table void the deal) and the dealer's four of a kind.</li>
+        <li>Matches run to the traditional 31, 51 or 101 points.</li>
+        <li>Every word on screen and every spoken VoiceOver line is in English and Italian. A test fails if any text in the app is missing its Italian.</li>
       </ul>
     </div>
   </section>
@@ -77,10 +80,12 @@
     <div class="body">
       <div class="shots shots-strip">
         <figure class="shot"><img src="/assets/img/cirulla/01-home.png" alt="Cirulla home screen with Continue and the three difficulty levels" width="480" height="1043" loading="lazy"><figcaption class="mono">Home</figcaption></figure>
-        <figure class="shot"><img src="/assets/img/cirulla/02-table.png" alt="The table mid-hand, with your three cards and the computer's move described" width="480" height="1043" loading="lazy"><figcaption class="mono">Your turn</figcaption></figure>
-        <figure class="shot"><img src="/assets/img/cirulla/03-scopa.png" alt="The computer sweeps the table: a scopa" width="480" height="1043" loading="lazy"><figcaption class="mono">Scopa</figcaption></figure>
-        <figure class="shot"><img src="/assets/img/cirulla/05-hand-result.png" alt="The end-of-hand score breakdown, category by category" width="480" height="1043" loading="lazy"><figcaption class="mono">Hand over</figcaption></figure>
+        <figure class="shot"><img src="/assets/img/cirulla/02-table.png" alt="The table with Classic cards: the computer has declared a cirulla and taken a card, and it is your turn" width="480" height="1043" loading="lazy"><figcaption class="mono">Your turn</figcaption></figure>
+        <figure class="shot"><img src="/assets/img/cirulla/03-hand-result.png" alt="The end-of-hand score breakdown, category by category" width="480" height="1043" loading="lazy"><figcaption class="mono">Hand over</figcaption></figure>
+        <figure class="shot"><img src="/assets/img/cirulla/04-settings.png" alt="Settings: the Ligurian or Classic cards, the Diamond or Cards app icon, capture hints and haptics" width="480" height="1043" loading="lazy"><figcaption class="mono">Settings</figcaption></figure>
+        <figure class="shot"><img src="/assets/img/cirulla/05-italian.png" alt="The table in Italian: the computer has declared a buona and the turn line reads Tocca a te" width="480" height="1043" loading="lazy"><figcaption class="mono">In Italian</figcaption></figure>
       </div>
+      <p class="shots-credit mono">Classic cards by Adrian Kennard, CC0. The Cards app icon in Settings uses Abjiklam's Chkobba cards, CC BY-SA 4.0.</p>
     </div>
   </section>
 
@@ -88,10 +93,10 @@
     <h2 class="mono">04 · RESULTS</h2>
     <div class="body">
       <div class="stats">
-        <div class="stat"><b>251</b><span>automated tests on the rules engine, because for a traditional game the rules are the product</span></div>
+        <div class="stat"><b>336</b><span>automated tests on the game engine and its packages, because for a traditional game the rules are the product</span></div>
         <div class="stat"><b>3</b><span>AI levels, each checked by thousands of self-played matches to be clearly stronger than the one below</span></div>
         <div class="stat"><b>0</b><span>network calls and no personal data: everything runs on the phone</span></div>
-        <div class="stat"><b>94</b><span>commits, with about 4,500 lines of Swift in the app and packages</span></div>
+        <div class="stat"><b>181</b><span>commits, with about 5,700 lines of Swift in the app and packages</span></div>
       </div>
     </div>
   </section>
@@ -99,7 +104,7 @@
   <section class="chapter">
     <h2 class="mono">05 · HOW IT WAS BUILT</h2>
     <div class="body">
-      <p>I made the product and rule decisions: which regional rules to follow, the French-suited Genoese deck, declarations as unprompted gestures, and the "Osteria" look of felt green, cream cards and brass. The code was written with AI assistance (Claude Code): one model wrote the plans and another carried them out, test-first.</p>
+      <p>I made the product and rule decisions: which regional rules and house rules to follow, the two decks, declarations as unprompted gestures, and the "Osteria" look of felt green, cream cards and brass. The code was written with AI assistance (Claude Code): one model wrote the plans and another carried them out, test-first.</p>
       <p>Playing it on my phone, I caught a rules error the model had written into the spec: the capture obligation applies to the card you play, not your whole hand. The hard part was rule fidelity. Small misreadings change how the game feels, and only real play exposed them.</p>
     </div>
   </section>

@@ -229,7 +229,8 @@ main { position: relative; padding: var(--frame-h) var(--edge) var(--status-h); 
 .shots-wide { grid-template-columns: 1fr; gap: 28px; }
 .shots-wide img { background: #fff; }
 .shot-narrow { max-width: 520px; }
-.shots-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.shots-strip { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+.chapter .body .shots-credit { margin-top: 16px; color: var(--muted); font-size: 12.5px; }
 .chapter.wide .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .next { padding: 6vh 0 8vh; }
 .next a { display: grid; gap: 10px; justify-items: start; padding: 28px min(20px, var(--gutter)); margin: 0 calc(-1 * min(20px, var(--gutter))); text-decoration: none; transition: background .2s ease; }
